@@ -14,7 +14,6 @@
 	<name>sysc-4806-project</name>
 	<description>4th year Sysc 4806 Group Project</description>
 	<properties>
-		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
