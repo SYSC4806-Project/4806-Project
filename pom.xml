@@ -8,7 +8,7 @@
 		<version>2.4.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
+	<groupId>com</groupId>
 	<artifactId>sysc-4806-project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sysc-4806-project</name>

@@ -1,4 +1,4 @@
-package com.example.sysc4806project;
+package com.sysc4806project;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

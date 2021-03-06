@@ -1,4 +1,4 @@
-package com.example.sysc4806project;
+package com.sysc4806project;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
