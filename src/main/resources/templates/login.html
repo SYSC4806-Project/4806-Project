@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" th:href="@{/}">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1>Login</h1>
+                <form th:action="@{/login}" method="post">
+
+                    <div th:if="${param.error}">
+                        <div class="alert alert-danger">Invalid credentials</div>
+                    </div>
+
+                    <div th:if="${param.logout}">
+                        <div class="alert alert-info">You have logged out.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"> Email </label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Enter email" autofocus="autofocus">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password"> Password </label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" autofocus="autofocus">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <input type="submit" name="submit-login" id="submit-login"
+                                 class="form-control btn btn-primary" value="Log In">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="form-group">
+                    <span>New User? <a href="/" th:href="@{/registration}">Register</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
