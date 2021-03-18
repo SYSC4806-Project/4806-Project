@@ -1,54 +1,84 @@
 package com.sysc4806project.UnitTests;
 
+import com.sysc4806project.models.Shop;
+import com.sysc4806project.models.User;
+
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class UserTest {
 
+    User testUser;
+
     @org.junit.Before
     public void setUp() throws Exception {
+        testUser = new User("Sandeep", "Layam", "sandeep@gmail.com", "myPassword");
     }
 
     @org.junit.After
     public void tearDown() throws Exception {
+        User testUser = null;
     }
 
     @org.junit.Test
-    public void getFirstName() {
+    public void getFirstNameTest() {
+        assertEquals("Sandeep", testUser.getFirstName());
     }
 
     @org.junit.Test
-    public void setFirstName() {
+    public void setFirstNameTest() {
+        testUser.setFirstName("Joe");
+        assertEquals("Joe", testUser.getFirstName());
     }
 
     @org.junit.Test
-    public void getLastName() {
+    public void getLastNameTest() {
+        assertEquals("Layam", testUser.getLastName());
     }
 
     @org.junit.Test
-    public void setLastName() {
+    public void setLastNameTest() {
+        testUser.setLastName("Johnson");
+        assertEquals("Johnson", testUser.getLastName());
     }
 
     @org.junit.Test
-    public void getEmail() {
+    public void getEmailTest() {
+        assertEquals("sandeep@gmail.com", testUser.getEmail());
     }
 
     @org.junit.Test
-    public void setEmail() {
+    public void setEmailTest() {
+        testUser.setEmail("anotheremail@gmail.com");
+        assertEquals("anotheremail@gmail.com", testUser.getEmail());
     }
 
     @org.junit.Test
-    public void getPassword() {
+    public void getPasswordTest() {
+        assertEquals("myPassword", testUser.getPassword());
     }
 
     @org.junit.Test
-    public void setPassword() {
+    public void setPasswordTest() {
+        testUser.setPassword("newPassword");
+        assertEquals("newPassword", testUser.getPassword());
     }
 
     @org.junit.Test
-    public void getShops() {
+    public void addShopTest() {
+        Shop testShop1 = new Shop("Grocery Shop", testUser);
+        testUser.addShop(testShop1);
+        assertTrue(testUser.getAllShops().contains(testShop1));
+
     }
 
     @org.junit.Test
-    public void setShops() {
+    public void getAllShopsTest() {
+        Shop testShop1 = new Shop("Grocery Shop", testUser);
+        testUser.addShop(testShop1);
+        ArrayList testList = new ArrayList<Shop>();
+        testList.add(testShop1);
+        assertTrue(testUser.getAllShops().equals(testList));
     }
 }
