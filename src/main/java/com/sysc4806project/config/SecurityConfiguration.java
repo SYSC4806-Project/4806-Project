@@ -19,17 +19,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/registration**", "/js/**", "/css/**", "/images/**").permitAll()
-                .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()
-                .and().logout().invalidateHttpSession(true).clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")
+        http.
+                authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/index").permitAll()
+                .antMatchers("/shops").permitAll()
+                .antMatchers("/dashboard").authenticated()
+                .antMatchers("/registration**",
+                        "/js/**",
+                        "/css/**",
+                        "/images/**").permitAll().anyRequest().authenticated().
+                and()
+                    .formLogin().
+                        loginPage("/login")
+                            .successForwardUrl("/dashboard").
+                            permitAll()
+                .and()
+                        .logout()
+                            .invalidateHttpSession(true)
+                            .clearAuthentication(true)
+                            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                            .logoutSuccessUrl("/login?logout")
                 .permitAll();
     }
 
@@ -45,5 +58,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         authentication.setPasswordEncoder(passwordEncoder());
         return authentication;
     }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
+    }
+
 
 }
