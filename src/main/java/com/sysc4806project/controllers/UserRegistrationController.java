@@ -21,7 +21,6 @@ public class UserRegistrationController {
     }
 
     @PostMapping
-    @ResponseBody
     public String registerUserAccount(@ModelAttribute("user")UserRegistrationDto registrationDto) {
         userService.registerUser(registrationDto);
         return "redirect:/registration?success";
