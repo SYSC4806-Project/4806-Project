@@ -3,6 +3,7 @@ package com.sysc4806project.models;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
@@ -72,4 +73,6 @@ public class User {
     public void setShops(List<Shop> shops) {
         this.shops = shops;
     }
+
+
 }
