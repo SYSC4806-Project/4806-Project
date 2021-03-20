@@ -33,16 +33,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/images/**").permitAll().anyRequest().authenticated().
                 and()
-                .formLogin().
-                loginPage("/login")
-                .successForwardUrl("/dashboard").
-                permitAll()
+                    .formLogin().
+                        loginPage("/login")
+                            .successForwardUrl("/dashboard").
+                            permitAll()
                 .and()
-                .logout()
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
+                        .logout()
+                            .invalidateHttpSession(true)
+                            .clearAuthentication(true)
+                            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                            .logoutSuccessUrl("/login?logout")
                 .permitAll();
     }
 
