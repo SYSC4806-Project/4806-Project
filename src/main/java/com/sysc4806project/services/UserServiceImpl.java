@@ -4,10 +4,10 @@ import com.sysc4806project.models.User;
 import com.sysc4806project.repositories.UserRepository;
 import com.sysc4806project.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -22,21 +22,17 @@ public class UserServiceImpl implements UserService{
         this.userRepository = userRepository;
     }
 
+
     @Override
     public User registerUser(UserRegistrationDto registrationDto) {
-        User user = new User(registrationDto.getFirstName(),
-                registrationDto.getLastName(), registrationDto.getEmail(), passwordEncoder.encode(registrationDto.getPassword()));
+        User user = new User(registrationDto.getUsername(),passwordEncoder.encode(registrationDto.getPassword()), registrationDto.getFirstname(), registrationDto.getLastname());
+
 
         return userRepository.save(user);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
-        if(user == null) {
-            throw new UsernameNotFoundException("Invalid email or password, user not found.");
-        }
-
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), null);
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }
