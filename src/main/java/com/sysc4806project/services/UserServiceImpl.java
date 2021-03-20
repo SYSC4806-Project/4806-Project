@@ -25,18 +25,18 @@ public class UserServiceImpl implements UserService{
     @Override
     public User registerUser(UserRegistrationDto registrationDto) {
         User user = new User(registrationDto.getFirstName(),
-                registrationDto.getLastName(), registrationDto.getEmail(), passwordEncoder.encode(registrationDto.getPassword()));
+                registrationDto.getLastName(), registrationDto.getUsername(), passwordEncoder.encode(registrationDto.getPassword()));
 
         return userRepository.save(user);
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
+        User user = userRepository.findByUsername(email);
         if(user == null) {
             throw new UsernameNotFoundException("Invalid email or password, user not found.");
         }
 
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), null);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), null);
     }
 }
