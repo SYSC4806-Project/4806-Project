@@ -13,7 +13,7 @@ public class UserTest {
 
     @org.junit.Before
     public void setUp() throws Exception {
-        testUser = new User("Sandeep", "Layam", "sandeep@gmail.com", "myPassword");
+        testUser = new User("sandeeplayam", "myPassword", "Sandeep", "Layam");
     }
 
     @org.junit.After
@@ -41,17 +41,6 @@ public class UserTest {
     public void setLastNameTest() {
         testUser.setLastName("Johnson");
         assertEquals("Johnson", testUser.getLastName());
-    }
-
-    @org.junit.Test
-    public void getEmailTest() {
-        assertEquals("sandeep@gmail.com", testUser.getEmail());
-    }
-
-    @org.junit.Test
-    public void setEmailTest() {
-        testUser.setEmail("anotheremail@gmail.com");
-        assertEquals("anotheremail@gmail.com", testUser.getEmail());
     }
 
     @org.junit.Test

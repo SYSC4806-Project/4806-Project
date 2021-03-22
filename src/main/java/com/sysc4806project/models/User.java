@@ -64,19 +64,19 @@ public class User {
         shops.add(shop);
     }
 
-    public String getFirstname() {
+    public String getFirstName() {
         return firstname;
     }
 
-    public void setFirstname(String firstname) {
+    public void setFirstName(String firstname) {
         this.firstname = firstname;
     }
 
-    public String getLastname() {
+    public String getLastName() {
         return lastname;
     }
 
-    public void setLastname(String lastname) {
+    public void setLastName(String lastname) {
         this.lastname = lastname;
     }
 
