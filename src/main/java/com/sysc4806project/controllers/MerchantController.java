@@ -10,4 +10,9 @@ public class MerchantController {
     public String merchantDashboard() {
         return "merchantDashboard";
     }
+
+    @GetMapping("/merchant/shops")
+    public String getMerchantShops() {
+        return "merchantShops";
+    }
 }
