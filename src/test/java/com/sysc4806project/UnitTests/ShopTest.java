@@ -2,6 +2,8 @@ package com.sysc4806project.UnitTests;
 
 import com.sysc4806project.models.Shop;
 import com.sysc4806project.models.User;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
