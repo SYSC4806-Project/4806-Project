@@ -1,2 +1,2 @@
 language: java
-script: ./mvnw clean install, mvn test
+script: ./mvnw clean install
