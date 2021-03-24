@@ -25,8 +25,6 @@ public class User {
     @Column
     private String lastname;
 
-
-
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Shop> shops = new ArrayList<>();
 
@@ -37,8 +35,6 @@ public class User {
         this.password = password;
         this.firstname = firstname;
         this.lastname =lastname;
-
-
     }
 
 
