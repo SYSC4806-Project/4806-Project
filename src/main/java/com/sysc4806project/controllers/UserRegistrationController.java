@@ -23,7 +23,7 @@ public class UserRegistrationController {
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user")UserRegistrationDto registrationDto) {
         userService.registerUser(registrationDto);
-        return "dashboard";
+        return "login";
     }
 
     @GetMapping

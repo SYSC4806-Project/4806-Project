@@ -11,14 +11,15 @@ public class Shop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true)
     private String name;
 
-
-    @OneToMany(mappedBy = "parentShop", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Category> category = new ArrayList<>();
+//    @OneToMany(mappedBy = "parentShop", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Category> category = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User owner;
 
     public Shop() {
@@ -37,13 +38,13 @@ public class Shop {
         this.name = name;
     }
 
-    public List<Category> getCategories() {
-        return category;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.category = categories;
-    }
+//    public List<Category> getCategories() {
+//        return category;
+//    }
+//
+//    public void setCategories(List<Category> categories) {
+//        this.category = categories;
+//    }
 
     public User getOwner() {
         return owner;
