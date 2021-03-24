@@ -1,5 +1,5 @@
 language: java
 env:
-  - TEST_SUITE=UnitTests
-  - TEST_SUITE=IntegrationTests
-script: "bundle exec rake test:$TEST_SUITE"
+  - TEST_FOLDER=UnitTests
+  - TEST_FOLDER=IntegrationTests
+script: cd $TEST_FOLDER && mvn verify
