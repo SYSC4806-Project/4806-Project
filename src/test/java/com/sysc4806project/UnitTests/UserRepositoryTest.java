@@ -20,7 +20,6 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserRepositoryTest {
 
 
@@ -40,7 +39,7 @@ public class UserRepositoryTest {
     @Test
     public void testCreateUser() {
 
-        User savedUser = userRepository.save(new User("Broog", "pass","Omar", "B"));
+        User savedUser = userRepository.save(new User("Borg", "pass","Omar", "B"));
 
         assertThat(savedUser.getId()).isGreaterThan(0);
 
@@ -53,7 +52,7 @@ public class UserRepositoryTest {
         User user = userRepository.findByUsername("Broog");
 
 
-        assertThat(user.getUsername()).isEqualTo("Broog");
+        assertThat(user.getUsername()).isEqualTo("Brg");
     }
 
     @Test
@@ -82,9 +81,9 @@ public class UserRepositoryTest {
 
         userRepository.deleteById(user.getId());
 
-        User deletedProduct = userRepository.findByUsername("Broog");
+        User deletedUser = userRepository.findByUsername("Broog");
 
-        assertThat(deletedProduct).isNull();
+        assertThat(deletedUser).isNull();
 
     }
 
