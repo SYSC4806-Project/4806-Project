@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ShopService {
-    public void addShop(Shop shop);
-    //public void removeShop(Shop shop);
+    public void addOrUpdateShop(Shop shop);
+    public void removeShopById(Long shopId);
     public List<Shop> getAllMerchantShops(Long userId);
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -44,7 +45,15 @@ public class MerchantController {
     public String postMerchantShops(@ModelAttribute("shop")Shop shop) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         shop.setOwner(userService.findByUsername(auth.getName()));
-        shopService.addShop(shop);
+        shopService.addOrUpdateShop(shop);
         return "redirect:/merchant/shops";
     }
+
+    @GetMapping("/merchant/shops/delete/{id}")
+    public String deleteShop(@PathVariable Long id) {
+        shopService.removeShopById(id);
+        return "redirect:/merchant/shops";
+    }
+
+
 }

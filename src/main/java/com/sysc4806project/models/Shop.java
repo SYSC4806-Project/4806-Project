@@ -25,9 +25,10 @@ public class Shop {
     public Shop() {
     }
 
-    public Shop(String name, User owner) {
+    public Shop(String name, User owner, List<String> categories) {
         this.name = name;
         this.owner = owner;
+        this.categories = categories;
     }
 
     public String getName() {
@@ -37,14 +38,6 @@ public class Shop {
     public void setName(String name) {
         this.name = name;
     }
-
-//    public List<Category> getCategories() {
-//        return category;
-//    }
-//
-//    public void setCategories(List<Category> categories) {
-//        this.category = categories;
-//    }
 
     public User getOwner() {
         return owner;
@@ -60,5 +53,13 @@ public class Shop {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
     }
 }

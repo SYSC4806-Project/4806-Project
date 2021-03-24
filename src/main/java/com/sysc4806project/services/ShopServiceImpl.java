@@ -13,8 +13,13 @@ public class ShopServiceImpl implements ShopService{
     ShopRepository shopRepository;
 
     @Override
-    public void addShop(Shop shop) {
+    public void addOrUpdateShop(Shop shop) {
         shopRepository.save(shop);
+    }
+
+    @Override
+    public void removeShopById(Long shopId) {
+        shopRepository.deleteById(shopId);
     }
 
     @Override
