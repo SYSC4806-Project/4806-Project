@@ -15,8 +15,8 @@ public class Shop {
     @Column(nullable = false, unique = true)
     private String name;
 
-//    @OneToMany(mappedBy = "parentShop", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Category> category = new ArrayList<>();
+    @ElementCollection
+    private List<String> categories = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id")

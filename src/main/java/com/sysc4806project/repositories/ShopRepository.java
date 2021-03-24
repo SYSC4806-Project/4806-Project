@@ -10,6 +10,5 @@ import java.util.List;
 
 @Repository
 public interface ShopRepository extends JpaRepository<Shop, Long> {
-    @Query("FROM Shop s WHERE s.owner.id = :userId")
-    public List<Shop> getAllShopsCurrentUser(@Param("userId") Long userId);
+    List<Shop> findByOwnerId(Long user_id);
 }
