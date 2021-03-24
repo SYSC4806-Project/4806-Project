@@ -76,6 +76,15 @@ public class ShopRepositoryTest {
         assertThat(shop.getName()).isEqualTo(daShop.getName());
     }
 
+//    @Test
+//    public void testFindByCategory() {
+//
+//        List<Shop> shops = shopRepository.findByCategory("sports");
+//
+//
+//        assertThat(shop.getName()).isEqualTo(daShop.getName());
+//    }
+
 
     @Test
     public void testShowShops() {
