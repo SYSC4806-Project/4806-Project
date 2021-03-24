@@ -53,4 +53,12 @@ public class Shop {
     public void setOwner(User owner) {
         this.owner = owner;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

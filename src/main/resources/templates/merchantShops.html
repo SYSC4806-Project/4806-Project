@@ -39,7 +39,7 @@
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">SID</th>
+            <th scope="col">Shop #</th>
             <th scope="col">Shop Name</th>
             <th scope="col">Delete</th>
             <th scope="col">Update</th>
@@ -47,12 +47,12 @@
         </thead>
         <tbody>
 
-        <tr th:each="category, iStat : ${categories}">
+        <tr th:each="shop, iStat : ${shops}">
             <th scope="row" th:text="${iStat.index + 1}">1</th>
-            <td th:text="${category.name}">Larry</td>
+            <td th:text="${shop.name}">Larry</td>
 
-            <td><a href="" th:href="@{/merchant/shops/delete/{id}(id=${category.id})}" class="btn btn-danger">Delete</a></td>
-            <td><a href="" th:href="@{/merchant/shops/update/{id}(id=${category.id})}" class="btn btn-warning text-white">Update</a></td>
+            <td><a href="" th:href="@{/merchant/shops/delete/{id}(id=${shop.id})}" class="btn btn-danger">Delete</a></td>
+            <td><a href="" th:href="@{/merchant/shops/update/{id}(id=${shop.id})}" class="btn btn-warning text-white">Update</a></td>
 
         </tr>
         </tbody>

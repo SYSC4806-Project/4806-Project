@@ -27,7 +27,10 @@ public class MerchantController {
     }
 
     @GetMapping("/merchant/shops")
-    public String getMerchantShopPage() {
+    public String getMerchantShopPage(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(auth.getName());
+        model.addAttribute("shops", shopService.getAllMerchantShops(user.getId()));
         return "merchantShops";
     }
 
