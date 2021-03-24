@@ -1,4 +1,2 @@
 language: java
-env:
-  - TEST_FOLDER=UnitTests
-  - TEST_FOLDER=IntegrationTests
+jdk: oraclejdk8
