@@ -13,8 +13,9 @@ public class Shop {
     private Long id;
     private String name;
 
-    @ElementCollection
-    private List<String> categories = new ArrayList<>();
+
+    @OneToMany(mappedBy = "parentShop", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Category> category = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -36,12 +37,12 @@ public class Shop {
         this.name = name;
     }
 
-    public List<String> getCategories() {
-        return categories;
+    public List<Category> getCategories() {
+        return category;
     }
 
-    public void setCategories(List<String> categories) {
-        this.categories = categories;
+    public void setCategories(List<Category> categories) {
+        this.category = categories;
     }
 
     public User getOwner() {
