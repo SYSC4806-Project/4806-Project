@@ -30,17 +30,17 @@ public class Sysc4806ProjectApplicationTests {
 	public void contextLoads() {
 	}
 
-	@Test
-	public void main() {
-
-		Result result = JUnitCore.runClasses(Sysc4806ProjectApplicationTests.class);
-
-//		for (Failure failure : result.getFailures()) {
-//			System.out.println(failure.toString());
-//		}
+//	@Test
+//	public void main() {
 //
-//		System.out.println(result.wasSuccessful());
-
-	}
+//		//Result result = JUnitCore.runClasses(Sysc4806ProjectApplicationTests.class);
+//
+////		for (Failure failure : result.getFailures()) {
+////			System.out.println(failure.toString());
+////		}
+////
+////		System.out.println(result.wasSuccessful());
+//
+//	}
 }
 
