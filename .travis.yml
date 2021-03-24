@@ -1,2 +1,5 @@
 language: java
-script: mvn verify
+env:
+  - TEST_SUITE=UnitTests
+  - TEST_SUITE=IntegrationTests
+script: "bundle exec rake test:$TEST_SUITE"
