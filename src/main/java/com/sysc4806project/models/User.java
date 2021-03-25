@@ -52,12 +52,12 @@ public class User {
         this.password = password;
     }
 
-    public List<Shop> getShops() {
+    public List<Shop> getAllShops() {
         return shops;
     }
 
-    public void setShops(List<Shop> shops) {
-        this.shops = shops;
+    public void addShop(Shop shop) {
+        shops.add(shop);
     }
 
     public String getFirstName() {
@@ -75,7 +75,6 @@ public class User {
     public void setLastName(String lastname) {
         this.lastname = lastname;
     }
-
 
     public Long getId() {
         return id;
