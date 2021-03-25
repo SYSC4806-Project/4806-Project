@@ -56,29 +56,31 @@ public class User {
         this.password = password;
     }
 
-    public List<Shop> getShops() {
+    public List<Shop> getAllShops() {
         return shops;
     }
 
-    public void setShops(List<Shop> shops) {
-        this.shops = shops;
+    public void addShop(Shop shop) {
+        shops.add(shop);
     }
 
-    public String getFirstname() {
+    public String getFirstName() {
         return firstname;
     }
 
-    public void setFirstname(String firstname) {
+    public void setFirstName(String firstname) {
         this.firstname = firstname;
     }
 
-    public String getLastname() {
+    public String getLastName() {
         return lastname;
     }
 
-    public void setLastname(String lastname) {
+    public void setLastName(String lastname) {
         this.lastname = lastname;
     }
 
+
+    public Long getId() { return id; }
 
 }
