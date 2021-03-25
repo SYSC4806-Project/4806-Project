@@ -56,7 +56,21 @@ public class MerchantControllerTest {
                 .andExpect(content().contentType("text/html;charset=UTF-8"));
     }
 
-   
+//    @Test
+//    @WithMockUser
+//    public void testMerchantShops() throws Exception {
+//        this.mockMvc.perform(get("/merchant/shops")).andDo(print()).andExpect(status().isOk())
+//                .andExpect(content().string(containsString("Add Shop")))
+//                .andExpect(content().contentType("text/html;charset=UTF-8"));
+//    }
+
+    @Test
+    @WithMockUser
+    public void testMerchantShopsAdd() throws Exception {
+        this.mockMvc.perform(get("/merchant/shops/add")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Shop Name")))
+                .andExpect(content().contentType("text/html;charset=UTF-8"));
+    }
 
 
 
