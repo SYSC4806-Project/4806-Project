@@ -30,6 +30,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/index").permitAll()
                 .antMatchers("/shops").permitAll()
+                .antMatchers("/merchant").authenticated()
+                .antMatchers("/merchant/shops").authenticated()
+                .antMatchers("/merchant/shops/add").authenticated()
+                .antMatchers("/merchant/shops/delete").authenticated()
                 .antMatchers("/dashboard").authenticated()
                 .antMatchers("/registration**",
                         "/js/**",
@@ -38,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 and()
                 .formLogin().
                 loginPage("/login")
-                .defaultSuccessUrl("/dashboard", true).
+                .defaultSuccessUrl("/merchant", true).
                 permitAll()
                 .and()
                 .logout()

@@ -58,7 +58,7 @@ public class UserTest {
 
     @org.junit.Test
     public void addShopTest() {
-        Shop testShop1 = new Shop("Grocery Shop", testUser);
+        Shop testShop1 = new Shop("Grocery Shop", testUser, new ArrayList<>());
         testUser.addShop(testShop1);
         assertTrue(testUser.getAllShops().contains(testShop1));
 
@@ -66,7 +66,7 @@ public class UserTest {
 
     @org.junit.Test
     public void getAllShopsTest() {
-        Shop testShop1 = new Shop("Grocery Shop", testUser);
+        Shop testShop1 = new Shop("Grocery Shop", testUser, new ArrayList<>());
         testUser.addShop(testShop1);
         ArrayList testList = new ArrayList<Shop>();
         testList.add(testShop1);

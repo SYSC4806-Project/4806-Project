@@ -18,20 +18,6 @@ public class AppController {
 
     @GetMapping("/")
     public String index () {
-
-//        System.out.println("Categories ");
-//        Shop sh1 = shopRepo.findByName("Boom");
-//        List<Shop> sh = shopRepo.findByCategories("sport");
-//        System.out.println(sh);
-//
-//        System.out.println(sh1.getName());
-//        System.out.println(sh1.getCategories().add("sport"));
-//        shopRepo.save(sh1);
-////        sh = shopRepo.findByCategories("sport");
-//        long longnum = 1;
-//        List<Shop> sh = shopRepo.findByOwnerId(longnum);
-//        System.out.println(sh);
-//        System.out.println(sh.get(0));
         return "index";
     }
 }

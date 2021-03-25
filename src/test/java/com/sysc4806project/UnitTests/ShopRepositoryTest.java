@@ -21,6 +21,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -46,7 +47,7 @@ public class ShopRepositoryTest {
     public void setUp() {
         tester = new User("Sim", "s123", "Simon", "Yacoub");
         userRepository.save(tester);
-        daShop = new Shop("daShop", tester);
+        daShop = new Shop("daShop", tester, new ArrayList<>());
         shopRepository.save(daShop);
 
     }

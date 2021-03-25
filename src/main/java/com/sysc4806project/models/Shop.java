@@ -11,21 +11,24 @@ public class Shop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true)
     private String name;
 
     @ElementCollection
-    private List<String> categories = new ArrayList<>();
+    private List<String> categoryList = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User owner;
 
     public Shop() {
     }
 
-    public Shop(String name, User owner) {
+    public Shop(String name, User owner, List<String> categories) {
         this.name = name;
         this.owner = owner;
+        this.categoryList = categories;
     }
 
     public String getName() {
@@ -34,14 +37,6 @@ public class Shop {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<String> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<String> categories) {
-        this.categories = categories;
     }
 
     public User getOwner() {
@@ -54,5 +49,17 @@ public class Shop {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<String> getCategoryList() {
+        return categoryList;
+    }
+
+    public void setCategoryList(List<String> categories) {
+        this.categoryList = categories;
     }
 }

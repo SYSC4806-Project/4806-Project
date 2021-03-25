@@ -2,6 +2,7 @@ package com.sysc4806project.UnitTests;
 
 import com.sysc4806project.models.Shop;
 import com.sysc4806project.models.User;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -21,7 +22,7 @@ public class ShopTest {
     @org.junit.Before
     public void setUp() throws Exception {
         simon = new User("Simon", "Yacoub", "simon@bing.com", "S");
-        coffeeShop = new Shop("beans", simon);
+        coffeeShop = new Shop("beans", simon, new ArrayList<>());
         categories = new ArrayList<String>(Arrays.asList(scat));
 
 
@@ -49,14 +50,14 @@ public class ShopTest {
 
     @org.junit.Test
     public void setCategories() {
-        coffeeShop.setCategories(categories);
-        assertTrue(coffeeShop.getCategories().equals(categories));
+        coffeeShop.setCategoryList(categories);
+        assertTrue(coffeeShop.getCategoryList().equals(categories));
     }
 
-    @org.junit.Test
+    @Test
     public void getCategories() {
-        coffeeShop.setCategories(categories);
-        assertTrue(coffeeShop.getCategories().equals(categories));
+        coffeeShop.setCategoryList(categories);
+        assertTrue(coffeeShop.getCategoryList().equals(categories));
     }
 
     @org.junit.Test
