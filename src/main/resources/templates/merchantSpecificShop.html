@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -35,28 +35,29 @@
 </nav>
 <div class="container bg-info">
 
-    <form th:action="@{/merchant/shops/update}" method="post" th:object="${shop}">
-        <input type="hidden" name="id"  th:field="*{id}">
+    <form th:action="@{/merchant/shops/update/{id}(id=${shop.id})}" method="post" th:object="${shop}">
+<!--        <input type="hidden" name="id"  th:field="*{id}">-->
         <div class="m-3">
             <div class="form-group row">
                 <label class="col-form-label col-sm-4" for="name">Edit Shop Name</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" required th:field="*{name}" name="name" id="name"  placeholder="Enter name">
                     <div class="text-center p-3">
-                        <button type="submit" class="btn btn-warning text-white">Edit Name</button>
+                        <button type="submit" class="btn btn-warning text-white">Change Name</button>
                     </div>
                 </div>
             </div>
         </div>
     </form>
 
-    <form th:action="@{/merchant/shops/add}" method="post" th:object="${shop}">
-        <input type="hidden" name="id"  th:field="*{id}">
+
+    <form th:action="@{/merchant/shops/update/{id}(id=${shop.id})}" method="post" th:object="${shop}">
+<!--        <input type="hidden" name="id"  th:field="*{id}">-->
         <div class="m-3">
             <div class="form-group row">
-                <label class="col-form-label col-sm-4" for="category">Add New Category</label>
+                <label class="col-form-label col-sm-4" for="category">Add A New Category</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" required th:field="*{categoryList}" name="name" id="category"  placeholder="Enter Category Name(only one please)">
+                    <input type="text" class="form-control" required  name="category" id="category"  placeholder="Enter Category Name (only one please)">
                     <div class="text-center p-3">
                         <button type="submit" class="btn btn-primary">Add Category</button>
                     </div>
@@ -67,12 +68,28 @@
 
 
 
+    <!--    Category List is <span th:text="${categoryList}" />-->
+    <!--    Id is <span th:text="${id}" />-->
+    <!--    Id2 is <span th:text="*{id}" />-->
+    <!--    <tr th:each="category : ${categoryList}">-->
+    <!--        <td th:text="${category}">1</td>-->
+    <!--        <td><a href="#" th:text="${category.title}">Title ...</a></td>-->
+    <!--        <td th:text="${category.text}">Text ...</td>-->
+    <!--    </tr>-->
+
+    <!--    <div class="form-group row">-->
+    <!--        <label class="col-form-label col-sm-4" for="categoryList">Enter category</label>-->
+    <!--        <div class="col-sm-8">-->
+    <!--            <input type="text" class="form-control" required th:field="*{categoryList}" name="categoryList" id="categoryList"  placeholder="Enter category(Only one please)">-->
+    <!--        </div>-->
+    <!--    </div>-->
+
     <table class="table">
         <thead class="thead-dark">
         <tr>
             <th scope="col">Category Name</th>
             <th scope="col">Delete</th>
-            <th scope="col">Edit</th>
+            <th scope="col">Return</th>
         </tr>
         </thead>
         <tbody>
@@ -82,7 +99,7 @@
 
 
             <td><a href="" th:href="@{/merchant/shops/delete/{id}(id=${shop.id})}" class="btn btn-danger">Delete</a></td>
-            <td><a href="" th:href="@{/merchant/shops/update/{id}(id=${shop.id})}" class="btn btn-warning text-white">Edit</a></td>
+            <td><a href="" th:href="@{/merchant/shops}" class="btn btn-warning text-white">Return to Shops</a></td>
 
         </tr>
         </tbody>

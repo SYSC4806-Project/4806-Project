@@ -9,11 +9,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -30,10 +32,27 @@ public class MerchantController {
     }
 
     @GetMapping("/merchant/shops")
-    public String getMerchantShopPage(Model model) {
+    public String getMerchantShopPage( Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(auth.getName());
+
+//        System.out.println("Model => "+model);
+//        System.out.println("Auth: "+ auth);
+//        System.out.println("Name: "+ auth.getName());
+//        System.out.println("User => "+ user);
+//        System.out.println("Name: "+ user.getUsername());
+
         model.addAttribute("shops", shopService.getAllMerchantShops(user.getId()));
+
+//        List<Shop> shops = (List<Shop>) model.getAttribute("shops");
+//
+//        System.out.println("New Model => "+model);
+//        System.out.println("Attrs: "+model.getAttribute("shops"));
+//        System.out.println("Shops => "+shops);
+//        System.out.println(shops.toString());
+//        System.out.println("S1 "+shops.get(0).getName()+" "+shops.get(0).getCategoryList());
+//        System.out.println("S2 "+shops.get(1).getName()+" "+shops.get(1).getCategoryList());
+
         return "merchantShops";
     }
 
@@ -57,18 +76,59 @@ public class MerchantController {
         return "redirect:/merchant/shops";
     }
 
-//    @GetMapping("/merchant/shops/update/{id}")
-//    public String getUpdateShop(@PathVariable Long id, Model model) {
-//        Optional<Shop> shop = shopService.getShopById(id);
-//        if(shop.isPresent()) {
-//            model.addAttribute("shop", shop.get());
-//            //System.out.println(shop.get().getCategoryList());
-//            return "merchantSpecificShop";
-//        } else {
-//            return "404page";
-//        }
-//    }
+    @GetMapping("/merchant/shops/update/{id}")
+    public String getUpdateShop(@PathVariable Long id, Model model) {
+        System.out.println("GET update shop");
+        Optional<Shop> shop = shopService.getShopById(id);
 
-//    @PostMapping("/merchant/shops/update/{id}")
-//    public String postUpdateShop(@PathVariable Long id, Model model)
+        if(shop.isPresent()) {
+            model.addAttribute("shop", shop.get());
+            model.addAttribute("categoryList",shop.get().getCategoryList());
+            System.out.println("Before ->"+ shop.get().getName()+" "+ shop.get().getCategoryList());
+            return "merchantSpecificShop";
+        } else {
+            return "404page";
+        }
+    }
+
+    @PostMapping("/merchant/shops/update/{id}")
+    public String postUpdateShop(@PathVariable Long id, Model model,
+                                 @ModelAttribute("shop")Shop shop,
+                                 @ModelAttribute("category") String category
+                                 ){
+        System.out.println("POST update shop");
+
+        Optional<Shop> shopSir = shopService.getShopById(id);
+        Shop shop1 = shopSir.get();
+        shop =shopService.getShopById(id).get();
+
+        System.out.println("Shop "+shop);
+        System.out.println(shop.getName() + " "+shop.getId());
+        System.out.println(shop.getCategoryList());
+
+        if(!category.isEmpty()){
+            System.out.println("Not empty ");
+
+            List<String> categories = (shop.getCategoryList());
+
+            System.out.println("Old categories "+categories);
+            System.out.println("New Category "+category);
+            categories.add(category);
+            System.out.println("New categories "+categories);
+
+            shop.setCategoryList(categories);
+
+
+        }else{
+            System.out.println("Empty ");
+
+        }
+
+
+        
+        shopService.addShop(shop);
+        System.out.println("Updated categories "+shop.getCategoryList());
+
+        return "redirect:/merchant/shops/update/{id}";
+    }
 }
