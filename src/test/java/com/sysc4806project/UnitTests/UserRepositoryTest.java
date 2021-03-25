@@ -52,7 +52,7 @@ public class UserRepositoryTest {
         User user = userRepository.findByUsername("Broog");
 
 
-        assertThat(user.getUsername()).isEqualTo("Brg");
+        assertThat(user.getUsername()).isEqualTo("Broog");
     }
 
     @Test
