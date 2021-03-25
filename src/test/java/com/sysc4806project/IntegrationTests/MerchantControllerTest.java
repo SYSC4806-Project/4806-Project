@@ -18,6 +18,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockServletContext;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -48,10 +49,18 @@ public class MerchantControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    public void testMerchant() throws Exception {
-
+    @WithMockUser
+    public void testMerchantDashboard() throws Exception {
         this.mockMvc.perform(get("/merchant")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("Welcome")))
+                .andExpect(content().string(containsString("Easily manage your shops")))
                 .andExpect(content().contentType("text/html;charset=UTF-8"));
     }
+
+   
+
+
+
+
+
+
 }
