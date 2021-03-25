@@ -16,7 +16,7 @@ public class Shop {
     private String name;
 
     @ElementCollection
-    private List<String> categories = new ArrayList<>();
+    private List<String> categoryList = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -28,7 +28,7 @@ public class Shop {
     public Shop(String name, User owner, List<String> categories) {
         this.name = name;
         this.owner = owner;
-        this.categories = categories;
+        this.categoryList = categories;
     }
 
     public String getName() {
@@ -55,11 +55,11 @@ public class Shop {
         this.id = id;
     }
 
-    public List<String> getCategories() {
-        return categories;
+    public List<String> getCategoryList() {
+        return categoryList;
     }
 
-    public void setCategories(List<String> categories) {
-        this.categories = categories;
+    public void setCategoryList(List<String> categories) {
+        this.categoryList = categories;
     }
 }

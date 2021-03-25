@@ -5,7 +5,9 @@ import com.sysc4806project.repositories.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShopServiceImpl implements ShopService{
@@ -13,7 +15,7 @@ public class ShopServiceImpl implements ShopService{
     ShopRepository shopRepository;
 
     @Override
-    public void addOrUpdateShop(Shop shop) {
+    public void addShop(Shop shop) {
         shopRepository.save(shop);
     }
 
@@ -27,5 +29,8 @@ public class ShopServiceImpl implements ShopService{
         return shopRepository.findByOwnerId(userId);
     }
 
-
+    @Override
+    public Optional<Shop> getShopById(Long shopId) {
+        return shopRepository.findById(shopId);
+    }
 }

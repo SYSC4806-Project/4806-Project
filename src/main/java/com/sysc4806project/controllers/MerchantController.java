@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Optional;
+
 @Controller
 public class MerchantController {
     @Autowired
@@ -45,7 +47,7 @@ public class MerchantController {
     public String postMerchantShops(@ModelAttribute("shop")Shop shop) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         shop.setOwner(userService.findByUsername(auth.getName()));
-        shopService.addOrUpdateShop(shop);
+        shopService.addShop(shop);
         return "redirect:/merchant/shops";
     }
 
@@ -55,5 +57,18 @@ public class MerchantController {
         return "redirect:/merchant/shops";
     }
 
+    @GetMapping("/merchant/shops/update/{id}")
+    public String getUpdateShop(@PathVariable Long id, Model model) {
+        Optional<Shop> shop = shopService.getShopById(id);
+        if(shop.isPresent()) {
+            model.addAttribute("shop", shop.get());
+            //System.out.println(shop.get().getCategoryList());
+            return "merchantSpecificShop";
+        } else {
+            return "404page";
+        }
+    }
 
+//    @PostMapping("/merchant/shops/update/{id}")
+//    public String postUpdateShop(@PathVariable Long id, Model model)
 }

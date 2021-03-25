@@ -22,7 +22,7 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link text-white" th:href="@{/merchant}" href="#">Home</a>
+                    <a class="nav-link text-white" th:href="@{/merchant}" href="#">Dashboard</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link text-white" th:href="@{/logout}" href="#">Logout</a>
@@ -42,17 +42,17 @@
             <th scope="col">Shop #</th>
             <th scope="col">Shop Name</th>
             <th scope="col">Delete</th>
-            <th scope="col">Update</th>
+            <th scope="col">Edit</th>
         </tr>
         </thead>
         <tbody>
 
         <tr th:each="shop, iStat : ${shops}">
-            <th scope="row" th:text="${iStat.index + 1}">1</th>
-            <td th:text="${shop.name}">Larry</td>
+            <th scope="row" th:text="${iStat.index + 1}"></th>
+            <td th:text="${shop.name}"></td>
 
             <td><a href="" th:href="@{/merchant/shops/delete/{id}(id=${shop.id})}" class="btn btn-danger">Delete</a></td>
-            <td><a href="" th:href="@{/merchant/shops/update/{id}(id=${shop.id})}" class="btn btn-warning text-white">Update</a></td>
+            <td><a href="" th:href="@{/merchant/shops/update/{id}(id=${shop.id})}" class="btn btn-warning text-white">Edit</a></td>
 
         </tr>
         </tbody>
