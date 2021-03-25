@@ -42,20 +42,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class LoginControllerTests {
+public class MerchantControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-
     @Test
-    public void testLogin() throws Exception {
+    public void testMerchant() throws Exception {
 
-        this.mockMvc.perform(get("/login")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("Login")))
+        this.mockMvc.perform(get("/merchant")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Welcome")))
                 .andExpect(content().contentType("text/html;charset=UTF-8"));
     }
-
 }
-
-
