@@ -57,17 +57,17 @@ public class MerchantController {
         return "redirect:/merchant/shops";
     }
 
-    @GetMapping("/merchant/shops/update/{id}")
-    public String getUpdateShop(@PathVariable Long id, Model model) {
-        Optional<Shop> shop = shopService.getShopById(id);
-        if(shop.isPresent()) {
-            model.addAttribute("shop", shop.get());
-            //System.out.println(shop.get().getCategoryList());
-            return "merchantSpecificShop";
-        } else {
-            return "404page";
-        }
-    }
+//    @GetMapping("/merchant/shops/update/{id}")
+//    public String getUpdateShop(@PathVariable Long id, Model model) {
+//        Optional<Shop> shop = shopService.getShopById(id);
+//        if(shop.isPresent()) {
+//            model.addAttribute("shop", shop.get());
+//            //System.out.println(shop.get().getCategoryList());
+//            return "merchantSpecificShop";
+//        } else {
+//            return "404page";
+//        }
+//    }
 
 //    @PostMapping("/merchant/shops/update/{id}")
 //    public String postUpdateShop(@PathVariable Long id, Model model)
