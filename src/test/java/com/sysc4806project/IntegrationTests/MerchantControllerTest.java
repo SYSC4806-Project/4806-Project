@@ -5,14 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sysc4806project.controllers.AppController;
 import com.sysc4806project.models.Shop;
 import com.sysc4806project.repositories.ShopRepository;
-import com.sysc4806project.services.ShopService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -43,10 +41,6 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import static org.hamcrest.Matchers.containsString;
@@ -62,15 +56,26 @@ public class MerchantControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
-    private ShopService shopService;
+    @Autowired
+    private ShopRepository shopRepository;
 
     @Test
     @WithMockUser
-    public void testMerchantDashboard() throws Exception {
-        this.mockMvc.perform(get("/merchant")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("Easily manage your shops")))
+    public void testMerchantShopsAdd() throws Exception {
+
+
+        this.mockMvc.perform(get("/merchant/shops/add")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Shop Name")))
+
                 .andExpect(content().contentType("text/html;charset=UTF-8"));
+
+//        mvc.perform( MockMvcRequestBuilders
+//                .get("/employees")
+//                .accept(MediaType.APPLICATION_JSON))
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.employees").exists())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.employees[*].employeeId").isNotEmpty());
     }
 
     @Test
@@ -113,25 +118,6 @@ public class MerchantControllerTest {
 ////                .andExpect(content().string(containsString("Welcome to Sysc 4806 project home page.")))
 ////                .andExpect(content().contentType("text/html;charset=UTF-8"));
 //    }
-    public void testMerchantShopsAdd() throws Exception {
-        this.mockMvc.perform(get("/merchant/shops/add")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("Shop Name")))
-                .andExpect(content().contentType("text/html;charset=UTF-8"));
-    }
-
-
-//    @Test
-//    @WithMockUser
-//    public void testMerchantShops() throws Exception {
-//        this.mockMvc.perform(get("/merchant/shops")).andDo(print()).andExpect(status().isOk())
-//                .andExpect(content().string(containsString("Shop #")))
-//                .andExpect(content().contentType("text/html;charset=UTF-8"));
-//    }
-
-
-
-
-
 
 
 
