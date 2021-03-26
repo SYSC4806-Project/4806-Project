@@ -30,6 +30,11 @@ public class ShopServiceImpl implements ShopService{
     }
 
     @Override
+    public List<Shop> getAllShops() {
+        return shopRepository.findAll();
+    }
+
+    @Override
     public Optional<Shop> getShopById(Long shopId) {
         return shopRepository.findById(shopId);
     }

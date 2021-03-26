@@ -50,7 +50,6 @@
         <tr th:each="shop, iStat : ${shops}">
             <th scope="row" th:text="${iStat.index + 1}"></th>
             <td th:text="${shop.name}"></td>
-
             <td><a href="" th:href="@{/merchant/shops/delete/{id}(id=${shop.id})}" class="btn btn-danger">Delete</a></td>
             <td><a href="" th:href="@{/merchant/shops/update/{id}(id=${shop.id})}" class="btn btn-warning text-white">Edit</a></td>
 
