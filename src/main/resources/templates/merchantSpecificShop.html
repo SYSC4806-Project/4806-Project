@@ -87,7 +87,7 @@
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Category Name</th>
+            <th scope="col">Category Tags</th>
             <th scope="col">Delete</th>
             <th scope="col">Return</th>
         </tr>
@@ -98,7 +98,7 @@
             <td th:text="${shop.categoryList}"></td>
 
 
-            <td><a href="" th:href="@{/merchant/shops/delete/{id}(id=${shop.id})}" class="btn btn-danger">Delete</a></td>
+            <td><a href="" th:href="@{/merchant/shops/delete/{id}(id=${shop.id})}" class="btn btn-danger">Delete Shop</a></td>
             <td><a href="" th:href="@{/merchant/shops}" class="btn btn-warning text-white">Return to Shops</a></td>
 
         </tr>

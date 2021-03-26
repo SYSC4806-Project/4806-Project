@@ -78,13 +78,13 @@ public class MerchantController {
 
     @GetMapping("/merchant/shops/update/{id}")
     public String getUpdateShop(@PathVariable Long id, Model model) {
-        System.out.println("GET update shop");
+//        System.out.println("GET update shop");
         Optional<Shop> shop = shopService.getShopById(id);
 
         if(shop.isPresent()) {
             model.addAttribute("shop", shop.get());
             model.addAttribute("categoryList",shop.get().getCategoryList());
-            System.out.println("Before ->"+ shop.get().getName()+" "+ shop.get().getCategoryList());
+//            System.out.println("Before ->"+ shop.get().getName()+" "+ shop.get().getCategoryList());
             return "merchantSpecificShop";
         } else {
             return "404page";
@@ -94,40 +94,40 @@ public class MerchantController {
     @PostMapping("/merchant/shops/update/{id}")
     public String postUpdateShop(@PathVariable Long id, Model model,
                                  @ModelAttribute("shop")Shop shop,
-                                 @ModelAttribute("category") String category
-                                 ){
-        System.out.println("POST update shop");
+                                 @ModelAttribute("category") String category,
+                                 @ModelAttribute("name") String name ){
+//        System.out.println("POST update shop");
 
         Optional<Shop> shopSir = shopService.getShopById(id);
         Shop shop1 = shopSir.get();
         shop =shopService.getShopById(id).get();
 
-        System.out.println("Shop "+shop);
-        System.out.println(shop.getName() + " "+shop.getId());
-        System.out.println(shop.getCategoryList());
+//        System.out.println("Shop "+shop);
+//        System.out.println(shop.getName() + " "+shop.getId());
+//        System.out.println(shop.getCategoryList());
 
         if(!category.isEmpty()){
-            System.out.println("Not empty ");
+//            System.out.println("Not empty ");
 
             List<String> categories = (shop.getCategoryList());
 
-            System.out.println("Old categories "+categories);
-            System.out.println("New Category "+category);
+//            System.out.println("Old categories "+categories);
+//            System.out.println("New Category "+category);
             categories.add(category);
-            System.out.println("New categories "+categories);
+//            System.out.println("New categories "+categories);
 
             shop.setCategoryList(categories);
 
 
-        }else{
-            System.out.println("Empty ");
-
         }
 
 
-        
+//        System.out.println("New shop Name: "+name);
+        if(!name.isEmpty()) {
+            shop.setName(name);
+        }
         shopService.addShop(shop);
-        System.out.println("Updated categories "+shop.getCategoryList());
+//        System.out.println("Updated categories "+shop.getCategoryList());
 
         return "redirect:/merchant/shops/update/{id}";
     }
