@@ -95,6 +95,7 @@ public class MerchantController {
     public String postUpdateShop(@PathVariable Long id, Model model,
                                  @ModelAttribute("shop")Shop shop,
                                  @ModelAttribute("category") String category,
+                                 @ModelAttribute("oldCategory") String oldCategory,
                                  @ModelAttribute("name") String name ){
 //        System.out.println("POST update shop");
 
@@ -121,11 +122,20 @@ public class MerchantController {
 
         }
 
+        if(!oldCategory.isEmpty()){
+
+            List<String> categories = (shop.getCategoryList());
+            categories.remove(oldCategory);
+            shop.setCategoryList(categories);
+
+        }
 
 //        System.out.println("New shop Name: "+name);
         if(!name.isEmpty()) {
             shop.setName(name);
         }
+
+
         shopService.addShop(shop);
 //        System.out.println("Updated categories "+shop.getCategoryList());
 
