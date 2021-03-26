@@ -22,7 +22,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 		UserTest.class,
 		AppControllerTest.class,
 		ShopRepositoryTest.class,
-		ShopControllerTest.class
+		ShopControllerTest.class,
 		LoginControllerTest.class,
 		UserRegistrationControllerTest.class,
 		MerchantControllerTest.class
