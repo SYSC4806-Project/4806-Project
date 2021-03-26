@@ -2,6 +2,7 @@ package com.sysc4806project;
 
 
 import com.sysc4806project.IntegrationTests.AppControllerTest;
+import com.sysc4806project.IntegrationTests.LoginControllerTests;
 import com.sysc4806project.UnitTests.ShopRepositoryTest;
 import com.sysc4806project.UnitTests.ShopTest;
 import com.sysc4806project.UnitTests.UserRepositoryTest;
@@ -17,7 +18,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 		ShopTest.class,
 		UserTest.class,
 		AppControllerTest.class,
-		ShopRepositoryTest.class
+		ShopRepositoryTest.class,
+		LoginControllerTests.class
 })
 @SpringBootTest
 public class Sysc4806ProjectApplicationTests {
