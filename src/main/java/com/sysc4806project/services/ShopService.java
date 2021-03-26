@@ -10,5 +10,6 @@ public interface ShopService {
     public void addShop(Shop shop);
     public void removeShopById(Long shopId);
     public List<Shop> getAllMerchantShops(Long userId);
+    public List<Shop> getAllShops();
     public Optional<Shop> getShopById(Long shopId);
 }
