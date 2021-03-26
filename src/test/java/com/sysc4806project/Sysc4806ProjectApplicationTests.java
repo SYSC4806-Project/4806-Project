@@ -3,6 +3,9 @@ package com.sysc4806project;
 
 import com.sysc4806project.IntegrationTests.AppControllerTest;
 import com.sysc4806project.IntegrationTests.ShopControllerTest;
+import com.sysc4806project.IntegrationTests.LoginControllerTest;
+import com.sysc4806project.IntegrationTests.MerchantControllerTest;
+import com.sysc4806project.IntegrationTests.UserRegistrationControllerTest;
 import com.sysc4806project.UnitTests.ShopRepositoryTest;
 import com.sysc4806project.UnitTests.ShopTest;
 import com.sysc4806project.UnitTests.UserRepositoryTest;
@@ -20,26 +23,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 		AppControllerTest.class,
 		ShopRepositoryTest.class,
 		ShopControllerTest.class
+		LoginControllerTest.class,
+		UserRegistrationControllerTest.class,
+		MerchantControllerTest.class
 })
 @SpringBootTest
 public class Sysc4806ProjectApplicationTests {
-
-
+	
 	@Test
 	public void contextLoads() {
-			}
+	}
 
-//	@Test
-//	public void main() {
-//
-//		//Result result = JUnitCore.runClasses(Sysc4806ProjectApplicationTests.class);
-//
-////		for (Failure failure : result.getFailures()) {
-////			System.out.println(failure.toString());
-////		}
-////
-////		System.out.println(result.wasSuccessful());
-//
-//	}
 }
 
