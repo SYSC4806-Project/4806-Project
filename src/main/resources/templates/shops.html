@@ -37,12 +37,11 @@
     <h1 class="display-4">E-commerce</h1>
 </div>
 <div class="container-fluid">
-    <div class="row col d-flex justify-content-center">
+    <div class="row col d-flex" th:each="shop, iStat : ${shops}">
         <div class="col-sm-2 pt-3 col d-flex justify-content-center" >
             <div class="card" style="background-color:white;">
                 <div class="card-body">
-                    <h4 class="card-title">ShopNameHere</h4>
-                    <p class="card-text">Desc Here</p>
+                    <h4 class="card-title" th:text="${shop.name}"></h4>
                 </div>
             </div>
         </div>
