@@ -24,14 +24,18 @@ public class Product {
 
     private String imageName;
 
+    @Column(nullable = false)
+    private int inventoryNum;
+
     public Product() {}
 
-    public Product(String name, Shop shop, double price, String description, String imageName) {
+    public Product(String name, Shop shop, double price, String description, String imageName, int inventoryNumber) {
         this.name = name;
         this.parentShop = shop;
         this.price = price;
         this.description = description;
         this.imageName = imageName;
+        this.inventoryNum = inventoryNumber;
     }
 
     public Long getId() {
@@ -80,5 +84,13 @@ public class Product {
 
     public void setImageName(String imageName) {
         this.imageName = imageName;
+    }
+
+    public int getInventoryNum() {
+        return inventoryNum;
+    }
+
+    public void setInventoryNum(int inventoryNum) {
+        this.inventoryNum = inventoryNum;
     }
 }
