@@ -58,8 +58,8 @@ public class Product {
         return parentShop;
     }
 
-    public void setParentShop(Shop parentShop) {
-        this.parentShop = parentShop;
+    public void setParentShop(Shop shop) {
+        this.parentShop = shop;
     }
 
     public double getPrice() {

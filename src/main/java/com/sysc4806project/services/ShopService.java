@@ -2,7 +2,6 @@ package com.sysc4806project.services;
 
 import com.sysc4806project.models.Shop;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

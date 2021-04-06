@@ -1,5 +1,7 @@
 package com.sysc4806project.controllers;
 
+import com.sysc4806project.dto.ProductDTO;
+import com.sysc4806project.models.Product;
 import com.sysc4806project.models.Shop;
 import com.sysc4806project.models.User;
 import com.sysc4806project.services.ProductService;
@@ -11,11 +13,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -152,6 +156,34 @@ public class MerchantController {
     @GetMapping("/merchant/products/{id}")
     public String getMerchantProductPage(@PathVariable Long id, Model model) {
         model.addAttribute("products", productService.getAllProductsWithinShop(id)); //this id is shop id
+        model.addAttribute("shop", shopService.getShopById(id).get());
         return "merchantProducts";
+    }
+
+    @GetMapping("/merchant/products/add/{id}")
+    public String getProductAdd(@PathVariable Long id, Model model) {
+        model.addAttribute("productDTO", new ProductDTO());
+        model.addAttribute("shop", shopService.getShopById(id).get());
+        return "merchantProductsAdd";
+    }
+
+    @PostMapping("/merchant/products/add/{id}")
+    public String postProductAdd(@PathVariable Long id, @ModelAttribute("productDTO")ProductDTO productDTO,
+                                 @RequestParam("productImage")MultipartFile file,
+                                 @RequestParam("imgName")String imgName) throws IOException {
+        productDTO.setParentShopId(id);
+        Product product = productService.dtoConvertToProductObject(productDTO);
+        String imageUUID;
+        String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/static/productImages";
+        if (!file.isEmpty()) {
+            imageUUID = file.getOriginalFilename();
+            Path fileNameAndPath = Paths.get(uploadDirectory, imageUUID);
+            Files.write(fileNameAndPath, file.getBytes());
+        } else {
+            imageUUID = imgName;
+        }
+        product.setImageName(imageUUID);
+        productService.addProduct(product);
+        return "redirect:/merchant/products/{id}";
     }
 }
