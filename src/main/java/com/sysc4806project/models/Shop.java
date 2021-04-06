@@ -22,6 +22,9 @@ public class Shop {
     @JoinColumn(name = "user_id")
     private User owner;
 
+    @OneToMany(mappedBy = "parentShop", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Shop> products = new ArrayList<>();
+
     public Shop() {
     }
 
