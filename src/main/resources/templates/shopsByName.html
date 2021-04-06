@@ -37,20 +37,6 @@
     <h1 class="display-4">E-commerce</h1>
 </div>
 
-<form action="/shops/shopsByName" class ='form-inLine'>
-    <div class ="form-group mb-2">
-        <input type ="text" class ="form-control" name ="name" placeholder="Search by Name" />
-        <input type ="submit" value ="Search" class = "btn btn-primary"/>
-    </div>
-</form>
-
-<form action="/shops/shopsByCategory" class ='form-inLine'>
-    <div class ="form-group mb-2">
-        <input type ="text" class ="form-control" name ="name" placeholder="Search by Category" />
-        <input type ="submit" value ="Search" class = "btn btn-primary"/>
-    </div>
-</form>
-
 
 <div class="container-fluid">
     <div class="row col d-flex" th:each="shop, iStat : ${shops}">

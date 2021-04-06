@@ -12,4 +12,7 @@ public interface ShopService {
     public List<Shop> getAllMerchantShops(Long userId);
     public List<Shop> getAllShops();
     public Optional<Shop> getShopById(Long shopId);
+
+    public List<Shop> findByName(String name);
+
 }

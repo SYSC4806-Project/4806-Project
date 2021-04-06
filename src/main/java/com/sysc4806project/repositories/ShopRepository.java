@@ -15,4 +15,7 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
     Shop findByName(String shopName);
     List<Shop> findByCategoryList(String cat);
     List<Shop> findByOwnerId(Long user_id);
+    List<Shop> findByNameLike(String name);
+
+
 }
