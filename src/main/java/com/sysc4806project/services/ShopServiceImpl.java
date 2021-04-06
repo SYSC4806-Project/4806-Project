@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class ShopServiceImpl implements ShopService{
     @Autowired
-    ShopRepository shopRepository;
+    private ShopRepository shopRepository;
 
     @Override
     public void addShop(Shop shop) {

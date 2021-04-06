@@ -23,7 +23,7 @@ public class Shop {
     private User owner;
 
     @OneToMany(mappedBy = "parentShop", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Shop> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
     public Shop() {
     }
