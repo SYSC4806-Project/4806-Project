@@ -35,6 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/merchant/shops/add").authenticated()
                 .antMatchers("/merchant/shops/delete").authenticated()
                 .antMatchers("/dashboard").authenticated()
+                .antMatchers("/merchant/products/{id}").authenticated()
                 .antMatchers("/registration**",
                         "/js/**",
                         "/css/**",

@@ -2,6 +2,7 @@ package com.sysc4806project.controllers;
 
 import com.sysc4806project.models.Shop;
 import com.sysc4806project.models.User;
+import com.sysc4806project.services.ProductService;
 import com.sysc4806project.services.ShopService;
 import com.sysc4806project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,15 @@ public class MerchantController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ProductService productService;
+
     @GetMapping("/merchant")
     public String merchantDashboard() {
         return "merchantDashboard";
     }
+
+    //Shop Endpoints
 
     @GetMapping("/merchant/shops")
     public String getMerchantShopPage( Model model) {
@@ -140,5 +146,12 @@ public class MerchantController {
 //        System.out.println("Updated categories "+shop.getCategoryList());
 
         return "redirect:/merchant/shops/update/{id}";
+    }
+
+    //Product Endpoints
+    @GetMapping("/merchant/products/{id}")
+    public String getMerchantProductPage(@PathVariable Long id, Model model) {
+        model.addAttribute("products", productService.getAllProductsWithinShop(id)); //this id is shop id
+        return "merchantProducts";
     }
 }
