@@ -42,4 +42,9 @@ public class ProductServiceImpl implements ProductService{
         product.setPrice(productDTO.getPrice());
         return product;
     }
+
+    @Override
+    public void removeProductById(Long productId) {
+        productRepository.deleteById(productId);
+    }
 }
