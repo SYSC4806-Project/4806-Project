@@ -1,6 +1,7 @@
 package com.sysc4806project.services;
 
 import com.sysc4806project.models.Shop;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,4 +16,6 @@ public interface ShopService {
 
     public List<Shop> findByName(String name);
 
+    //@Query("select c from shop_category_list c where category_list like %?1% ")
+    public List<Shop> findByCategory(String category_list);
 }

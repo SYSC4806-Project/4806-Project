@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface ShopRepository extends JpaRepository<Shop, Long> {
     Shop findByName(String shopName);
-    List<Shop> findByCategoryList(String cat);
+    List<Shop> findByCategoryList(String category_list);
     List<Shop> findByOwnerId(Long user_id);
     List<Shop> findByNameLike(String name);
 

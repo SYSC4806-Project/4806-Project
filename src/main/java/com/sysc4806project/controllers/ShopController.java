@@ -28,6 +28,11 @@ public class ShopController {
         return "shopsByName";
     }
 
+    @GetMapping("/shops/shopsByCategory")
+    public String getShopsPageByCategory (Model model, @RequestParam(defaultValue = "") String category_list) {
+        model.addAttribute("shops", shopService.findByCategory(category_list));
+        return "shopsByCategory";
+    }
 
 
 

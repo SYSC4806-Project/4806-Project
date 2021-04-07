@@ -41,9 +41,15 @@ public class ShopServiceImpl implements ShopService{
 
     @Override
     public List<Shop> findByName(String name) {
-        return shopRepository.findByNameLike(name);
+        return shopRepository.findByNameLike("%"+name+"%");
     }
 
+    @Override
+    public List<Shop> findByCategory(String category_list) {
+        return shopRepository.findByCategoryList(category_list);
+
+                //findByCategoryList("%" + category+ "%");
+    }
 
 
 }
