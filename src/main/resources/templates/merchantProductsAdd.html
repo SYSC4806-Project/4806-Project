@@ -28,6 +28,9 @@
                     <a class="nav-link text-white" th:href="@{/merchant/shops}" href="#">Shops</a>
                 </li>
                 <li class="nav-item active">
+                    <a class="nav-link text-white" th:href="@{/merchant/products/{id}(id=${shop.id})}" href="#">Products</a>
+                </li>
+                <li class="nav-item active">
                     <a class="nav-link text-white" th:href="@{/logout}" href="#">Logout</a>
                 </li>
             </ul>
