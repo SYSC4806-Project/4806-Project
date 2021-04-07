@@ -39,48 +39,6 @@
 
 
 
-    <form action="/shops/shopsByName"  class ='form-inLine'>
-        <div  class ="form-group mb-2" style = "width: 300px; margin:auto">
-            <input type ="text" class ="form-control" name ="name" placeholder="Search by Name" />
-            <input type ="submit" value ="Search" class = "btn btn-primary"/>
-        </div>
-    </form>
-
-
-    <form action="/shops/shopsByCategory" class ='form-inLine'>
-        <div class ="form-group mb-2" style = "width: 300px; margin:auto">
-            <input type ="text" class ="form-control" name ="category_list" placeholder="Search by Category" />
-            <input type ="submit" value ="Search" class = "btn btn-primary" style ="margin:auto"/>
-        </div>
-    </form>
-
-
-<style>
-.vertical-center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 57%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-</style>
-
-<div class="vertical-center">
-    <a href='/shops' >
-        <button>
-            Clear All
-        </button>
-    </a>
-</div>
-
-
-
-
-
-
-
-
 <div class="container-fluid">
     <div class="row col d-flex" th:each="shop, iStat : ${shops}">
         <div class="col-sm-2 pt-3 col d-flex justify-content-center" >
