@@ -152,4 +152,23 @@ public class MerchantController {
         productService.removeProductById(productId);
         return "redirect:/merchant/products/{id}";
     }
+
+    @GetMapping("/merchant/products/update/{id}")
+    public String getUpdateProduct(@PathVariable Long id, Model model) {
+        System.out.println("GET "+id+" and model: "+model);
+        Product product = productService.getProductById(id);
+        model.addAttribute("shop", shopService.getShopById(id).get());
+        System.out.println("Product: "+product);
+        System.out.println(product.getId()+" "+product.getName());
+        System.out.println(product.getDescription());
+        System.out.println("Shop ID: "+model.getAttribute("shop"));
+        if(product!=null) {
+
+            model.addAttribute("product", product);
+
+            return "merchantProductsUpdate";
+        } else {
+            return "404page";
+        }
+    }
 }
