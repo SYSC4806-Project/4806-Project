@@ -38,7 +38,7 @@
 </nav>
 <div class="container bg-info">
     <div>
-        <h3 th:text="${shop.name } +' '+ Products"></h3>
+        <h3 th:text="${shop.name} +' '+ Products"></h3>
     </div>
 
     <a th:href="@{/merchant/products/add/{id}(id=${shop.id})}" style="margin: 20px 0" class="btn btn-primary text-white">Add Product</a>
@@ -58,7 +58,7 @@
             <th scope="row" th:text="${iStat.index + 1}"></th>
             <td th:text="${product.name}"></td>
             <td><img src="" height="100px" width="100px"  th:src="@{${'/productImages/' + product.imageName}}"></td>
-            <td><a href="" th:href="@{/merchant/products/delete/{id}(id=${product.id})}" class="btn btn-danger">Delete</a></td>
+            <td><a href="" th:href="@{/merchant/products/delete/{id}/{productId}(id=${shop.id}, productId=${product.id})}" class="btn btn-danger">Delete</a></td>
             <td><a href="" th:href="@{/merchant/products/update/{id}(id=${product.id})}" class="btn btn-warning text-white">Edit</a></td>
 
         </tr>

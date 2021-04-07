@@ -186,4 +186,12 @@ public class MerchantController {
         productService.addProduct(product);
         return "redirect:/merchant/products/{id}";
     }
+
+    @GetMapping("/merchant/products/delete/{id}/{productId}")
+    public String deleteProduct(@PathVariable Long id, @PathVariable Long productId) {
+        productService.removeProductById(productId);
+        System.out.println(id);
+        System.out.println(productId);
+        return "redirect:/merchant/products/{id}";
+    }
 }
