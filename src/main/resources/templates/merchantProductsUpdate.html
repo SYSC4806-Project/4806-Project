@@ -39,39 +39,39 @@
 </nav>
 <div class="container">
     <h3>Update Product</h3>
-    <form th:action="@{/merchant/products/update/{id}(id=${product.id})}" method="post" th:object="${productDTO}" enctype="multipart/form-data">
+    <form th:action="@{/merchant/products/update/{id}/{productId}(id=${shop.id}, productId=${productDTO.id})}" method="post" th:object="${productDTO}" enctype="multipart/form-data">
         <div class="row">
             <div class="col-sm-5">
 
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" required th:attr="value = ${product.name}"  field="*{name}" name="name" id="name"
+                    <input type="text" class="form-control" required th:attr="value = ${productDTO.name}"  field="*{name}" name="name" id="name"
                            placeholder="Enter name">
                 </div>
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="number" step=".01" class="form-control" required th:attr="value = ${product.price}" field="*{price}" name="price" id="price"
+                    <input type="number" step=".01" class="form-control" required th:attr="value = ${productDTO.price}" field="*{price}" name="price" id="price"
                            placeholder="Price">
                 </div>
                 <div class="form-group">
                     <label for="description">Product Description</label>
-                    <textarea class="form-control"  field="*{description}" name="description" id="description" th:text="${product.description}">
+                    <textarea class="form-control"  field="*{description}" name="description" id="description" th:text="${productDTO.description}">
                         </textarea>
                 </div>
                 <div class="form-group">
                     <label for="inventoryNum">Inventory Amount</label>
-                    <input type="number" class="form-control" required th:attr="value = ${product.inventoryNum}" field="*{inventoryNum}" name="inventoryNum" id="inventoryNum"
+                    <input type="number" class="form-control" required th:attr="value = ${productDTO.inventoryNum}" field="*{inventoryNum}" name="inventoryNum" id="inventoryNum"
                            placeholder="Amount of Inventory">
                 </div>
             </div>
             <div class="col-sm-5">
                 <p>Product Image</p>
                 <div class="custom-file">
-                    <input  type="file"  class="custom-file-input" name="productImage" accept="image/jpeg, image/png"  id="productImage"/>
+                    <input  type="file"  class="custom-file-input" name="productImage"  accept="image/jpeg, image/png"  id="productImage"/>
                     <label class="custom-file-label" for="productImage">Choose file</label>
                 </div>
                 <div class="form-group">
-                    <img src="#" id="imgPreview" height="300px" width="300px" th:src="@{${'/productImages/' + product.imageName}}" style="margin-top: 20px" alt=" ">
+                    <img src="#" id="imgPreview" height="300px" width="300px" th:src="@{${'/productImages/' + productDTO.imageName}}" style="margin-top: 20px" alt=" ">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>

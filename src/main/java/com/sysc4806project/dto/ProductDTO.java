@@ -5,6 +5,7 @@ import com.sysc4806project.models.Shop;
 import javax.persistence.*;
 
 public class ProductDTO {
+    private Long id;
     private String name;
     private Long parentShopId;
     private double price;
@@ -60,5 +61,13 @@ public class ProductDTO {
 
     public void setInventoryNum(int inventoryNum) {
         this.inventoryNum = inventoryNum;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

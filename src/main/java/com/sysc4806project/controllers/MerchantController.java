@@ -129,8 +129,7 @@ public class MerchantController {
     public String postProductAdd(@PathVariable Long id, @ModelAttribute("productDTO")ProductDTO productDTO,
                                  @RequestParam("productImage")MultipartFile file,
                                  @RequestParam("imgName")String imgName) throws IOException {
-        productDTO.setParentShopId(id);
-        Product product = productService.dtoConvertToProductObject(productDTO);
+
         String imageUUID;
         String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/static/productImages";
         if (!file.isEmpty()) {
@@ -140,8 +139,14 @@ public class MerchantController {
         } else {
             imageUUID = imgName;
         }
-        product.setImageName(imageUUID);
+
+
+        productDTO.setParentShopId(id);
+        productDTO.setImageName(imageUUID);
+
+        Product product = productService.dtoConvertToProductObject(productDTO);
         productService.addProduct(product);
+
         return "redirect:/merchant/products/{id}";
     }
 
@@ -153,22 +158,77 @@ public class MerchantController {
         return "redirect:/merchant/products/{id}";
     }
 
-    @GetMapping("/merchant/products/update/{id}")
-    public String getUpdateProduct(@PathVariable Long id, Model model) {
-        System.out.println("GET "+id+" and model: "+model);
-        Product product = productService.getProductById(id);
+    @GetMapping("/merchant/products/update/{id}/{productId}")
+    public String getUpdateProduct(@PathVariable Long id, @PathVariable Long productId, Model model) {
+        System.out.println("GET "+productId+" and model: "+model);
+        Product product = productService.getProductById(productId);
+        ProductDTO productDTO = productService.dtoConvertFromProductObject(product);
+
         model.addAttribute("shop", shopService.getShopById(id).get());
-        System.out.println("Product: "+product);
-        System.out.println(product.getId()+" "+product.getName());
-        System.out.println(product.getDescription());
-        System.out.println("Shop ID: "+model.getAttribute("shop"));
+        System.out.println("ProductDTO: "+productDTO);
+        System.out.println(productDTO.getId()+" "+productDTO.getName());
+        System.out.println(productDTO.getDescription());
+        System.out.println("Image name: "+ productDTO.getImageName());
+        System.out.println("Shop: "+shopService.getShopById(id).get());
+        System.out.println(shopService.getShopById(id).get().getId()+" "+shopService.getShopById(id).get().getName());
         if(product!=null) {
 
-            model.addAttribute("product", product);
+            model.addAttribute("productDTO", productDTO);
 
             return "merchantProductsUpdate";
         } else {
             return "404page";
         }
+    }
+
+    @PostMapping("/merchant/products/update/{id}/{productId}")
+    public String postUpdateShop(@PathVariable Long id,  @PathVariable Long productId, Model model,
+                                 @ModelAttribute("productDTO")ProductDTO productDTO,
+                                 @RequestParam("productImage")MultipartFile file
+                                ) throws IOException {
+
+        System.out.println("POST---------------------------");
+
+
+        String imageUUID;
+        String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/static/productImages";
+        if (!file.isEmpty()) {
+
+            imageUUID = file.getOriginalFilename();
+            System.out.println("If not empty "+imageUUID);
+            Path fileNameAndPath = Paths.get(uploadDirectory, imageUUID);
+            Files.write(fileNameAndPath, file.getBytes());
+        } else {
+            imageUUID = productService.getProductById(productId).getImageName();
+            System.out.println("If empty "+imageUUID);
+        }
+
+        productDTO.setImageName(imageUUID);
+        productDTO.setId(productId);
+        productDTO.setParentShopId(id);
+
+
+//        System.out.println("ProductDTO "+productDTO);
+//        System.out.println("ID "+productDTO.getId()+"  Shop ID:  "+productDTO.getParentShopId());
+//        System.out.println("Img "+productDTO.getImageName());
+//        System.out.println("Inventory "+productDTO.getInventoryNum());
+//
+//        System.out.println("Product1 "+productService.getProductById(productId));
+//        System.out.println("ID "+productService.getProductById(productId).getId()+"  Shop ID:  "+productService.getProductById(productId).getParentShop().getId());
+//        System.out.println("Img "+productService.getProductById(productId).getImageName());
+//        System.out.println("Inventory "+productService.getProductById(productId).getInventoryNum());
+
+        Product product = productService.dtoConvertToProductObject(productDTO);
+//        System.out.println("Product2 "+product);
+//        System.out.println("ID "+product.getId()+"  Shop ID:  "+product.getParentShop().getId());
+//        System.out.println("Img "+product.getImageName());
+//        System.out.println("Inventory "+product.getInventoryNum());
+
+
+//        System.out.println("ImageUUID name: "+imageUUID);
+
+
+        productService.addProduct(product);
+        return "redirect:/merchant/products/{id}";
     }
 }

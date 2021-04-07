@@ -11,5 +11,7 @@ public interface ProductService {
 
     public void addProduct(Product product);
     public Product dtoConvertToProductObject(ProductDTO productDTO);
+    public ProductDTO dtoConvertFromProductObject(Product product);
+
     public void removeProductById(Long productId);
 }

@@ -45,7 +45,7 @@
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Product #</th>
+            <th scope="col">Product ID</th>
             <th scope="col">Product Name</th>
             <th scope="col">Preview</th>
             <th scope="col">Delete</th>
@@ -54,12 +54,12 @@
         </thead>
         <tbody>
 
-        <tr th:each="product, iStat : ${products}">
-            <th scope="row" th:text="${iStat.index + 1}"></th>
+        <tr th:each="product : ${products}">
+            <th scope="row" th:text="${product.id}"></th>
             <td th:text="${product.name}"></td>
             <td><img src="" height="100px" width="100px"  th:src="@{${'/productImages/' + product.imageName}}"></td>
             <td><a href="" th:href="@{/merchant/products/delete/{id}/{productId}(id=${shop.id}, productId=${product.id})}" class="btn btn-danger">Delete</a></td>
-            <td><a href="" th:href="@{/merchant/products/update/{id}(id=${product.id})}" class="btn btn-warning text-white">Edit</a></td>
+            <td><a href="" th:href="@{/merchant/products/update/{id}/{productId}(id=${shop.id}, productId=${product.id})}" class="btn btn-warning text-white">Edit</a></td>
 
         </tr>
         </tbody>
