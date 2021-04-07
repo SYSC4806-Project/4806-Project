@@ -25,13 +25,13 @@ public class ShopController {
     @GetMapping("/shops/shopsByName")
     public String getShopsPageByName(Model model, @RequestParam(defaultValue = "") String name) {
         model.addAttribute("shops", shopService.findByName(name));
-        return "shopsByName";
+        return "shops";
     }
 
     @GetMapping("/shops/shopsByCategory")
     public String getShopsPageByCategory (Model model, @RequestParam(defaultValue = "") String category_list) {
         model.addAttribute("shops", shopService.findByCategory(category_list));
-        return "shopsByCategory";
+        return "shops";
     }
 
 
