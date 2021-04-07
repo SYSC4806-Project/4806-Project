@@ -35,34 +35,16 @@ public class MerchantController {
     private ProductService productService;
 
     @GetMapping("/merchant")
-    public String merchantDashboard() {
+    public String getMerchantDashboard() {
         return "merchantDashboard";
     }
 
     //Shop Endpoints
-
     @GetMapping("/merchant/shops")
     public String getMerchantShopPage( Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsername(auth.getName());
-
-//        System.out.println("Model => "+model);
-//        System.out.println("Auth: "+ auth);
-//        System.out.println("Name: "+ auth.getName());
-//        System.out.println("User => "+ user);
-//        System.out.println("Name: "+ user.getUsername());
-
         model.addAttribute("shops", shopService.getAllMerchantShops(user.getId()));
-
-//        List<Shop> shops = (List<Shop>) model.getAttribute("shops");
-//
-//        System.out.println("New Model => "+model);
-//        System.out.println("Attrs: "+model.getAttribute("shops"));
-//        System.out.println("Shops => "+shops);
-//        System.out.println(shops.toString());
-//        System.out.println("S1 "+shops.get(0).getName()+" "+shops.get(0).getCategoryList());
-//        System.out.println("S2 "+shops.get(1).getName()+" "+shops.get(1).getCategoryList());
-
         return "merchantShops";
     }
 
@@ -88,13 +70,11 @@ public class MerchantController {
 
     @GetMapping("/merchant/shops/update/{id}")
     public String getUpdateShop(@PathVariable Long id, Model model) {
-//        System.out.println("GET update shop");
         Optional<Shop> shop = shopService.getShopById(id);
 
         if(shop.isPresent()) {
             model.addAttribute("shop", shop.get());
             model.addAttribute("categoryList",shop.get().getCategoryList());
-//            System.out.println("Before ->"+ shop.get().getName()+" "+ shop.get().getCategoryList());
             return "merchantSpecificShop";
         } else {
             return "404page";
@@ -106,49 +86,27 @@ public class MerchantController {
                                  @ModelAttribute("shop")Shop shop,
                                  @ModelAttribute("category") String category,
                                  @ModelAttribute("oldCategory") String oldCategory,
-                                 @ModelAttribute("name") String name ){
-//        System.out.println("POST update shop");
-
+                                 @ModelAttribute("name") String name ) {
         Optional<Shop> shopSir = shopService.getShopById(id);
         Shop shop1 = shopSir.get();
         shop =shopService.getShopById(id).get();
 
-//        System.out.println("Shop "+shop);
-//        System.out.println(shop.getName() + " "+shop.getId());
-//        System.out.println(shop.getCategoryList());
-
         if(!category.isEmpty()){
-//            System.out.println("Not empty ");
-
             List<String> categories = (shop.getCategoryList());
-
-//            System.out.println("Old categories "+categories);
-//            System.out.println("New Category "+category);
             categories.add(category);
-//            System.out.println("New categories "+categories);
-
             shop.setCategoryList(categories);
-
-
         }
 
         if(!oldCategory.isEmpty()){
-
             List<String> categories = (shop.getCategoryList());
             categories.remove(oldCategory);
             shop.setCategoryList(categories);
-
         }
 
-//        System.out.println("New shop Name: "+name);
         if(!name.isEmpty()) {
             shop.setName(name);
         }
-
-
         shopService.addShop(shop);
-//        System.out.println("Updated categories "+shop.getCategoryList());
-
         return "redirect:/merchant/shops/update/{id}";
     }
 
@@ -189,9 +147,9 @@ public class MerchantController {
 
     @GetMapping("/merchant/products/delete/{id}/{productId}")
     public String deleteProduct(@PathVariable Long id, @PathVariable Long productId) {
+        // id path variable represents shop id
+        // productId path variable represents product id
         productService.removeProductById(productId);
-        System.out.println(id);
-        System.out.println(productId);
         return "redirect:/merchant/products/{id}";
     }
 }
