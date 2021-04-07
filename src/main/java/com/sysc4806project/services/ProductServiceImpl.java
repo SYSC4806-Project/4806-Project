@@ -35,14 +35,11 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product dtoConvertToProductObject(ProductDTO productDTO) {
-
-        System.out.println("ProductDTO ID Service "+productDTO.getId());
         Product product = productRepository.getById(productDTO.getId());
-        if(product==null){
-
-             product = new Product();
-
+        if (product == null) {
+            product = new Product();
         }
+        product.setId(productDTO.getId());
 
         product.setName(productDTO.getName());
         Optional<Shop> shopOptional = shopService.getShopById(productDTO.getParentShopId());
@@ -53,8 +50,7 @@ public class ProductServiceImpl implements ProductService{
         product.setDescription(productDTO.getDescription());
         product.setInventoryNum(productDTO.getInventoryNum());
         product.setPrice(productDTO.getPrice());
-        product.setImageName(productDTO.getImageName());
-        System.out.println("pIMG name: "+product.getImageName());
+        //product.setImageName(productDTO.getImageName());
 
         return product;
     }
