@@ -6,7 +6,10 @@ import com.sysc4806project.models.Shop;
 import com.sysc4806project.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +32,17 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public void addProduct(Product product) {
+    public void addProduct(Product product, MultipartFile file) {
+
+        if (!file.isEmpty()) {
+
+            try {
+                product.setImageName(Base64.getEncoder().encodeToString(file.getBytes()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         productRepository.save(product);
     }
 
@@ -50,7 +63,6 @@ public class ProductServiceImpl implements ProductService{
         product.setDescription(productDTO.getDescription());
         product.setInventoryNum(productDTO.getInventoryNum());
         product.setPrice(productDTO.getPrice());
-        //product.setImageName(productDTO.getImageName());
 
         return product;
     }

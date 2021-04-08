@@ -22,6 +22,8 @@ public class Product {
 
     private String description;
 
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private String imageName;
 
     @Column(nullable = false)

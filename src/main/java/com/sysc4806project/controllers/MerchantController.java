@@ -1,5 +1,6 @@
 package com.sysc4806project.controllers;
 
+import org.springframework.util.StringUtils;
 import com.sysc4806project.dto.ProductDTO;
 import com.sysc4806project.models.Product;
 import com.sysc4806project.models.Shop;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
 
@@ -127,22 +130,16 @@ public class MerchantController {
 
     @PostMapping("/merchant/products/add/{id}")
     public String postProductAdd(@PathVariable Long id, @ModelAttribute("productDTO")ProductDTO productDTO,
-                                 @RequestParam("productImage")MultipartFile file,
+                                 @RequestParam("productImage")MultipartFile multipartFile,
                                  @RequestParam("imgName")String imgName) throws IOException {
 
         productDTO.setParentShopId(id);
-        Product product = productService.dtoConvertToProductObject(productDTO);
-        String imageUUID;
-        String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/static/productImages";
-        if (!file.isEmpty()) {
-            imageUUID = file.getOriginalFilename();
-            Path fileNameAndPath = Paths.get(uploadDirectory, imageUUID);
-            Files.write(fileNameAndPath, file.getBytes());
-        } else {
-            imageUUID = imgName;
+        if (productDTO.getImageName() == null && productService.getProductById(productDTO.getId()) != null) {
+            productDTO.setImageName(productService.getProductById(productDTO.getId()).getImageName());
         }
-        product.setImageName(imageUUID);
-        productService.addProduct(product);
+
+        productService.addProduct(productService.dtoConvertToProductObject(productDTO), multipartFile);
+
         return "redirect:/merchant/products/{id}";
     }
 
@@ -158,6 +155,7 @@ public class MerchantController {
     public String getUpdateProduct(@PathVariable Long id, Model model) {
         //id coming in is product id
         Product product = productService.getProductById(id);
+        System.out.println("HEREEEEEE" + product.getImageName());
         ProductDTO productDTO = new ProductDTO();
         productDTO.setId(product.getId());
         productDTO.setName(product.getName());
@@ -167,7 +165,8 @@ public class MerchantController {
         productDTO.setInventoryNum(product.getInventoryNum());
         System.out.println("ProductDTO update " + productDTO.getId());
         model.addAttribute("productDTO", productDTO);
+        model.addAttribute("product", product);
         model.addAttribute("shop", shopService.getShopById(product.getParentShop().getId()).get());
-        return "merchantProductsAdd";
+        return "merchantProductsUpdate";
     }
 }
