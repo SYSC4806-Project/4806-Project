@@ -59,6 +59,16 @@ public class ShopController {
     public String postProductPage(@PathVariable Long id,@PathVariable Long productId, Model model) {
 
         return "redirect:/shop/{id}";
+    @GetMapping("/shops/shopsByName")
+    public String getShopsPageByName(Model model, @RequestParam(defaultValue = "") String name) {
+        model.addAttribute("shops", shopService.findByName(name));
+        return "shops";
+    }
+
+    @GetMapping("/shops/shopsByCategory")
+    public String getShopsPageByCategory (Model model, @RequestParam(defaultValue = "") String category_list) {
+        model.addAttribute("shops", shopService.findByCategory(category_list));
+        return "shops";
     }
 
 

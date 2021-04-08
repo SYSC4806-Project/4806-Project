@@ -28,4 +28,20 @@ public class ShopControllerTest {
                 .andExpect(content().string(containsString("E-commerce")))
                 .andExpect(content().contentType("text/html;charset=UTF-8"));
     }
+
+    @Test
+    public void testShopSearchByCategory() throws Exception {
+        this.mockMvc.perform(get("/shops/shopsByCategory")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("E-commerce")))
+                .andExpect(content().contentType("text/html;charset=UTF-8"));
+    }
+
+    @Test
+    public void testShopSearchByName() throws Exception {
+        this.mockMvc.perform(get("/shops/shopsByName")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("E-commerce")))
+                .andExpect(content().contentType("text/html;charset=UTF-8"));
+    }
+
+
 }
