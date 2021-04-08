@@ -51,6 +51,7 @@ public class ShopController {
         productDTO.setInventoryNum(product.getInventoryNum());
         System.out.println("ProductDTO update " + productDTO.getId());
         model.addAttribute("productDTO", productDTO);
+        model.addAttribute("product", product);
         model.addAttribute("shop", shopService.getShopById(id).get());
         return "product";
     }

@@ -71,7 +71,7 @@
             </div>
             </div>
             <div class="col-sm-5">
-             <img src="#" id="imgPreview" height="300px" width="300px" th:src="@{${'/productImages/' + productDTO.imageName}}" style="margin-top: 20px" alt=" ">
+             <img src="#" id="imgPreview" height="300px" width="300px" th:src="${'data:image/jpeg;png;base64,' + {product.imageName}}" style="margin-top: 20px" alt=" ">
                 <div class="form-group">
                     <label for="description">Product Description</label>
                     <textarea class="form-control" th:readonly="readonly" rows="5" th:field="*{description}" name="description" id="description"></textarea>
