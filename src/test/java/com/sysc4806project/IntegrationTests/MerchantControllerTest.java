@@ -213,11 +213,11 @@ public class MerchantControllerTest {
                 .andDo(print())
         ;
 
-        product = productRepository.getById(2L);
+        product = productRepository.getById(6L);
 
 
         assertThat(product.getName()).isEqualTo("prod");
-        assertThat(product.getId()==2);
+        assertThat(product.getId()==6);
 
     }
 
