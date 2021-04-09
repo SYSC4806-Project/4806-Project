@@ -1,4 +1,13 @@
 # 4806-Project
-This is the second milestone of the project and was completed by Simon Yacoub, Sudarsana Sandeep, Danish Butt, and Omar Elberougy. Some of the features that were worked on in this milestone include the login feature, merchant feature (CRUD operations for shops and categories), and displaying shops. We also finished fixing the issues from the previous milestone and added the Travis CI.
+This is the third milestone of the project and was completed by Simon Yacoub, Sudarsana Sandeep, Danish Butt, and Omar Elberougy. 
+
+Here are the features that were implemented:
+-role based authorization 
+-authentication using Spring Security
+-CRUD operations for shops
+-CRUD operations for products
+-search by name and category for shops
+
+Here is the link for Heroku: ADD IN
 
 Some of the documentation included is the uml class and database schema diagrams. 
