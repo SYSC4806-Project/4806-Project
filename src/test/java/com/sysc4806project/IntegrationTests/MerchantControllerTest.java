@@ -363,7 +363,7 @@ public class MerchantControllerTest {
                 .param("name", "MyShop")
                 .param("category", ("sports")))
                 .andDo(print())
-                .andExpect(redirectedUrl("/merchant/shops/update/4"));
+                .andExpect(redirectedUrl("/merchant/shops/update/8"));
 
         System.out.println("NEW name: "+shop.getName()+" List: "+ shop.getCategoryList());
 
