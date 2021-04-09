@@ -1,5 +1,6 @@
 package com.sysc4806project.services;
 
+import com.sysc4806project.aop.GetLogInfo;
 import com.sysc4806project.models.User;
 import com.sysc4806project.repositories.UserRepository;
 import com.sysc4806project.dto.UserRegistrationDto;
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
+    @GetLogInfo
     public User registerUser(UserRegistrationDto registrationDto) {
         User user;
         System.out.println("ROLESSS" + registrationDto.isMerchant());
