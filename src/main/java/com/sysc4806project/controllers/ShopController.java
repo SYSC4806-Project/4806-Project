@@ -32,7 +32,7 @@ public class ShopController {
         return "shops";
     }
 
-    @GetMapping("/shop/{id}")
+    @GetMapping("/products/{id}")
     public String getShopProductsPage(@PathVariable Long id, Model model) {
         model.addAttribute("products", productService.getAllProductsWithinShop(id)); //this id is shop id
         model.addAttribute("shop", shopService.getShopById(id).get());

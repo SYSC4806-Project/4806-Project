@@ -90,7 +90,7 @@
             <th scope="row" th:text="${shop.id}"></th>
             <td th:text="${shop.name}"></td>
             <td th:text="${shop.categoryList}"></td>
-            <td><a href="" th:href="@{/shop/{id}(id=${shop.id})}" class="btn btn-success">View Products</a></td>
+            <td><a href="" th:href="@{/products/{id}(id=${shop.id})}" class="btn btn-success">View Products</a></td>
         </tr>
         </tbody>
     </table>

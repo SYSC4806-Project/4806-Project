@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService{
         User user;
         System.out.println("ROLESSS" + registrationDto.isMerchant());
         if (registrationDto.isMerchant()) {
+            System.out.println("GOT HERE");
             user = new User(registrationDto.getUsername(),passwordEncoder.encode(registrationDto.getPassword()),
                     registrationDto.getFirstname(), registrationDto.getLastname());
             user.getAuthorities().add(new SimpleGrantedAuthority("ROLE_MERCHANT"));
