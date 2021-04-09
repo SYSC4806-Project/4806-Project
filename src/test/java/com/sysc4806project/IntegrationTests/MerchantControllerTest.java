@@ -1,10 +1,14 @@
 package com.sysc4806project.IntegrationTests;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sysc4806project.controllers.AppController;
+import com.sysc4806project.models.Product;
 import com.sysc4806project.models.Shop;
+import com.sysc4806project.models.User;
 import com.sysc4806project.repositories.ShopRepository;
+import com.sysc4806project.repositories.UserRepository;
+import com.sysc4806project.repositories.ProductRepository;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +23,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -34,17 +39,18 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.servlet.ServletContext;
 import javax.transaction.Transactional;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -58,10 +64,32 @@ public class MerchantControllerTest {
 
     @Autowired
     private ShopRepository shopRepository;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private UserRepository userRepository;
+
+
+    @After
+    public void tearDown()  {
+
+        userRepository.deleteAll();
+    }
 
     @Test
     @WithMockUser
+    public void testGetDashboard() throws Exception {
+        this.mockMvc.perform(get("/merchant")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Welcome")))
+                .andExpect(content().contentType("text/html;charset=UTF-8"));
+    }
+
+
+    @Test
+    @WithMockUser
+    @Transactional
     public void testMerchantShopsAdd() throws Exception {
+
 
 
         this.mockMvc.perform(get("/merchant/shops/add")).andDo(print()).andExpect(status().isOk())
@@ -69,13 +97,6 @@ public class MerchantControllerTest {
 
                 .andExpect(content().contentType("text/html;charset=UTF-8"));
 
-//        mvc.perform( MockMvcRequestBuilders
-//                .get("/employees")
-//                .accept(MediaType.APPLICATION_JSON))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.employees").exists())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.employees[*].employeeId").isNotEmpty());
     }
 
     @Test
@@ -103,21 +124,66 @@ public class MerchantControllerTest {
 
     }
 
-//    @Test
-//    @WithMockUser
-//    public void testGETDelete() throws Exception {
-//
-//        this.mockMvc.perform( MockMvcRequestBuilders
-//                .get("/merchant/shops/delete/{id}")
-//                .accept(MediaType.APPLICATION_JSON))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.shopId").value(null));
-//
-////        this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
-////                .andExpect(content().string(containsString("Welcome to Sysc 4806 project home page.")))
-////                .andExpect(content().contentType("text/html;charset=UTF-8"));
-//    }
+
+    @Test
+    @WithMockUser
+    @Transactional
+    public void testMerchantShopsUpdate() throws Exception {
+
+        User user = new User("username","pass","f","l");
+        userRepository.save(user);
+
+        System.out.println("User "+user.getId());
+        System.out.println("Repo "+userRepository.findById(user.getId()).get().getId());
+
+        Shop shop = new Shop("Shop",user, new ArrayList<>());
+        //shop.setId(1L);
+        shopRepository.save(shop);
+
+        System.out.println("Shop "+shop.getId());
+        System.out.println("Repo "+shopRepository.findByName("Shop").getId());
+
+        this.mockMvc.perform(get("/merchant/shops/update/{id}",2)).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Edit")))
+                .andExpect(content().contentType("text/html;charset=UTF-8"));
+
+    }
+
+    @Test
+    @WithMockUser
+    @Transactional
+    public void testMerchantShopsUpdatePOST() throws Exception{
+
+        User user = new User("username","pass","f","l");
+        userRepository.save(user);
+
+        System.out.println("User "+user.getId());
+        System.out.println("Repo "+userRepository.findById(user.getId()).get().getId());
+
+        Shop shop = new Shop("Shop",user, new ArrayList<>());
+        shopRepository.save(shop);
+
+        System.out.println("Shop "+shop.getId());
+        System.out.println("Repo "+shopRepository.findByName("Shop").getId());
+
+
+        System.out.println("Added Shop "+shop);
+        System.out.println("Shop name: "+shop.getName()+" List: "+ shop.getCategoryList());
+
+
+        this.mockMvc.perform(post("/merchant/shops/update/{id}",3).with(csrf()).secure( true )
+                .param("name", "MyShop")
+                .param("category", ("sports")))
+                .andDo(print())
+                .andExpect(redirectedUrl("/merchant/shops/update/3"));
+
+        System.out.println("NEW name: "+shop.getName()+" List: "+ shop.getCategoryList());
+
+
+        assertThat(shop.getName()).isEqualTo("MyShop");
+        assertThat(shop.getCategoryList()).contains("sports");
+
+    }
 
 
 
