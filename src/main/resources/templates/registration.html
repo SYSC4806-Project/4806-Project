@@ -50,8 +50,8 @@
                                     id="isMerchant"
                                     type="checkbox"
                                     name="isMerchant"
-                                    th:checked="${isMerchant}"
-                                    value="true"> <p>Only check this box if you would like to be a MERCHANT, otherwise leave it blank</p>
+                                    th:field="*{merchant}"
+                                    th:value="true"> <p>Only check this box if you would like to be a MERCHANT, otherwise leave it blank</p>
                             </input>
 
                         </div>

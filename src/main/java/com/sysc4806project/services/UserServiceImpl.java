@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService{
     @Override
     public User registerUser(UserRegistrationDto registrationDto) {
         User user;
-        System.out.println("ROLESSS" + registrationDto.getMerchant());
-        if (registrationDto.getMerchant()) {
+        System.out.println("ROLESSS" + registrationDto.isMerchant());
+        if (registrationDto.isMerchant()) {
             user = new User(registrationDto.getUsername(),passwordEncoder.encode(registrationDto.getPassword()),
                     registrationDto.getFirstname(), registrationDto.getLastname());
             user.getAuthorities().add(new SimpleGrantedAuthority("ROLE_MERCHANT"));
