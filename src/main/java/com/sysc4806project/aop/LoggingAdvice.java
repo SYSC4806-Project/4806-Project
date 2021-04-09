@@ -1,4 +1,4 @@
-package com.sysc4806project.advice;
+package com.sysc4806project.aop;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -14,16 +14,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAdvice {
 
-    Logger log = LoggerFactory.getLogger(LoggingAdvice.class);
-
-    @Pointcut(value = "execution(* com.sysc4806project.aop.*.*.*(..))")
-    public void myPointCut(){
-
-    }
+    Logger log = (Logger) LoggerFactory.getLogger(LoggingAdvice.class);
 
 
-    @Around("myPointCut")
-    public Object applicationLogger(ProceedingJoinPoint pjp) throws Throwable {
+    @Around("@annotation(com.sysc4806project.aop.GetLogInfo)")
+    public Object getLogInfo(ProceedingJoinPoint pjp) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
         String methodName =pjp.getSignature().getName();
         String className= pjp.getTarget().getClass().toString();
