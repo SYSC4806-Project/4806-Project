@@ -72,10 +72,9 @@ public class MerchantController {
         if(shop.isPresent()) {
             model.addAttribute("shop", shop.get());
             model.addAttribute("categoryList",shop.get().getCategoryList());
-            return "merchantSpecificShop";
-        } else {
-            return "404page";
+
         }
+        return "merchantSpecificShop";
     }
 
     @PostMapping("/merchant/shops/update/{id}")
