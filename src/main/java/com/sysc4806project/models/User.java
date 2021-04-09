@@ -1,10 +1,10 @@
 package com.sysc4806project.models;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "user")
@@ -28,6 +28,9 @@ public class User {
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Shop> shops = new ArrayList<>();
 
+    @ElementCollection
+    private Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+
     public User(){}
 
     public User(String username, String password, String firstname, String lastname) {
@@ -36,7 +39,6 @@ public class User {
         this.firstname = firstname;
         this.lastname =lastname;
     }
-
 
     public String getUsername(){ return username;}
 
@@ -82,5 +84,13 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Collection<GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Collection<GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 }

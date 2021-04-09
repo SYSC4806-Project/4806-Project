@@ -1,5 +1,7 @@
 package com.sysc4806project.services;
 
+import com.sysc4806project.aop.GetExecutionTime;
+import com.sysc4806project.aop.GetLogInfo;
 import com.sysc4806project.models.Shop;
 import com.sysc4806project.repositories.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +16,13 @@ public class ShopServiceImpl implements ShopService{
     private ShopRepository shopRepository;
 
     @Override
+    @GetLogInfo
     public void addShop(Shop shop) {
         shopRepository.save(shop);
     }
 
     @Override
+    @GetLogInfo
     public void removeShopById(Long shopId) {
         shopRepository.deleteById(shopId);
     }
@@ -29,6 +33,7 @@ public class ShopServiceImpl implements ShopService{
     }
 
     @Override
+    @GetExecutionTime
     public List<Shop> getAllShops() {
         return shopRepository.findAll();
     }

@@ -1,4 +1,25 @@
-# 4806-Project
-This is the second milestone of the project and was completed by Simon Yacoub, Sudarsana Sandeep, Danish Butt, and Omar Elberougy. Some of the features that were worked on in this milestone include the login feature, merchant feature (CRUD operations for shops and categories), and displaying shops. We also finished fixing the issues from the previous milestone and added the Travis CI.
+# 4806-Project Mini-Shopify
+This is the third milestone of the project and was completed by Simon Yacoub, Sudarsana Sandeep, Danish Butt, and Omar Elberougy. 
 
-Some of the documentation included is the uml class and database schema diagrams. 
+
+Here are the features that were implemented:
+
+-role based authorization 
+
+-authentication using Spring Security
+
+-CRUD operations for shops
+
+-CRUD operations for products
+
+-search by name and category for shops
+
+Incomplete features:
+
+-cart/checkout feature
+
+
+Here is the link for Heroku: ADD IN
+
+
+The documentation included is the uml class diagram and database schema diagram for Milestone 3
