@@ -58,7 +58,7 @@
             <td><img src="" height="100px" width="100px"  th:src="*{'data:image/jpeg;png;base64,' + {product.imageName}}"></td>
             <td th:text="${product.price}"></td>
             <td th:text="${product.inventoryNum}"></td>
-            <td><a href="" th:href="@{/shop/{id}/{productId}(id=${shop.id}, productId=${product.id})}" class="btn btn-danger">See more</a></td>
+            <td><a href="" th:href="@{/products/{id}/{productId}(id=${shop.id}, productId=${product.id})}" class="btn btn-danger">See more</a></td>
 
         </tr>
         </tbody>

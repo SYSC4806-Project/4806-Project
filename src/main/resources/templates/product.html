@@ -34,7 +34,7 @@
 <div class="container text-center">
 
 
-    <form th:action="@{/shop/{id}(id=${shop.id})}" method="get" th:object="${productDTO}">
+    <form th:action="@{/products/{id}(id=${shop.id})}" method="get" th:object="${productDTO}">
         <!--                        <input type="hidden" name="id"  th:field="*{id}">-->
         <div class="row">
             <div class="col-sm-5">
