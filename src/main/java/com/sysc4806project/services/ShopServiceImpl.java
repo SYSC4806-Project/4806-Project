@@ -1,5 +1,6 @@
 package com.sysc4806project.services;
 
+import com.sysc4806project.aop.GetExecutionTime;
 import com.sysc4806project.models.Shop;
 import com.sysc4806project.repositories.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class ShopServiceImpl implements ShopService{
     }
 
     @Override
+    @GetExecutionTime
     public List<Shop> getAllShops() {
         return shopRepository.findAll();
     }
