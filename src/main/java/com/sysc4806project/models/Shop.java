@@ -22,6 +22,9 @@ public class Shop {
     @JoinColumn(name = "user_id")
     private User owner;
 
+    @OneToMany(mappedBy = "parentShop", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Product> products = new ArrayList<>();
+
     public Shop() {
     }
 
@@ -61,5 +64,13 @@ public class Shop {
 
     public void setCategoryList(List<String> categories) {
         this.categoryList = categories;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

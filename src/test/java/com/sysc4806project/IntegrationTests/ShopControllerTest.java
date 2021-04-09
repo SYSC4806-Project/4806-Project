@@ -30,6 +30,7 @@ public class ShopControllerTest {
     }
 
     @Test
+    @WithMockUser
     public void testShopSearchByCategory() throws Exception {
         this.mockMvc.perform(get("/shops/shopsByCategory")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("E-commerce")))
@@ -37,6 +38,7 @@ public class ShopControllerTest {
     }
 
     @Test
+    @WithMockUser
     public void testShopSearchByName() throws Exception {
         this.mockMvc.perform(get("/shops/shopsByName")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("E-commerce")))

@@ -13,9 +13,6 @@ import java.util.List;
 @Controller
 public class AppController {
 
-    @Autowired
-    ShopRepository shopRepo;
-
     @GetMapping("/")
     public String index () {
         return "index";

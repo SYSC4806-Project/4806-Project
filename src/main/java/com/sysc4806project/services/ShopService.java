@@ -3,7 +3,6 @@ package com.sysc4806project.services;
 import com.sysc4806project.models.Shop;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

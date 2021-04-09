@@ -5,15 +5,9 @@ public class UserRegistrationDto {
     private String password;
     private String firstname;
     private String lastname;
+    private boolean merchant;
 
     public UserRegistrationDto() {}
-
-    public UserRegistrationDto(String username, String password, String firstname, String lastname) {
-        this.username = username;
-        this.password = password;
-        this.firstname = firstname;
-        this.lastname =lastname;
-    }
 
     public String getUsername() {
         return username;
@@ -45,5 +39,13 @@ public class UserRegistrationDto {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public boolean isMerchant() {
+        return merchant;
+    }
+
+    public void setMerchant(boolean merchant) {
+        this.merchant = merchant;
     }
 }

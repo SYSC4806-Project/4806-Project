@@ -6,10 +6,8 @@ import com.sysc4806project.IntegrationTests.ShopControllerTest;
 import com.sysc4806project.IntegrationTests.LoginControllerTest;
 import com.sysc4806project.IntegrationTests.MerchantControllerTest;
 import com.sysc4806project.IntegrationTests.UserRegistrationControllerTest;
-import com.sysc4806project.UnitTests.ShopRepositoryTest;
-import com.sysc4806project.UnitTests.ShopTest;
-import com.sysc4806project.UnitTests.UserRepositoryTest;
-import com.sysc4806project.UnitTests.UserTest;
+import com.sysc4806project.UnitTests.*;
+import com.sysc4806project.models.Product;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -25,7 +23,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 		ShopControllerTest.class,
 		LoginControllerTest.class,
 		UserRegistrationControllerTest.class,
-		MerchantControllerTest.class
+		MerchantControllerTest.class,
+		ProductRepositoryTest.class,
+		ProductTest.class
 })
 @SpringBootTest
 public class Sysc4806ProjectApplicationTests {

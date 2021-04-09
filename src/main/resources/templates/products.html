@@ -11,16 +11,17 @@
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <title>E-Commerce</title>
 </head>
-<body>
+<body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-light bg-dark" >
     <div class="container-fluid">
-        <a class="navbar-brand" href="@{/}">
+        <a class="navbar-brand" th:href="@{/}">
             <img th:src="@{/images/logo.png}"  src="../static/images/logo.png" width="auto" height="60" class="d-inline-block align-top" alt=""/>
         </a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
+
                 <li class="nav-item active">
                     <a class="nav-link text-white" th:href="@{/shops}" href="#">Shops</a>
                 </li>
@@ -31,68 +32,37 @@
         </div>
     </div>
 </nav>
-
-<div class="jumbotron text-center bg-danger">
-    <h1 class="display-4">E-commerce</h1>
-</div>
-
-<form action="/shops/shopsByName"  class ='form-inLine'>
-    <div  class ="form-group mb-2" style = "width: 300px; margin:auto">
-        <input type ="text" class ="form-control" name ="name" placeholder="Search by Name" />
-        <input type ="submit" value ="Search" class = "btn btn-primary"/>
+<div class="container bg-info">
+    <div>
+        <h3 th:text="${shop.name} +' '+ Products"></h3>
     </div>
-</form>
-
-
-<form action="/shops/shopsByCategory" class ='form-inLine'>
-    <div class ="form-group mb-2" style = "width: 300px; margin:auto">
-        <input type ="text" class ="form-control" name ="category_list" placeholder="Search by Category" />
-        <input type ="submit" value ="Search" class = "btn btn-primary" style ="margin:auto"/>
-    </div>
-</form>
-
-
-<div class ="form-group mb-2" style = "width: 300px; margin:auto">
-    <a href='/shops' >
-        <button class="btn btn-warning">
-            Clear All
-        </button>
-    </a>
-</div>
-
-
-<div class="container-fluid">
 
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Shop ID</th>
-            <th scope="col">Shop Name</th>
-            <th scope="col">Categories</th>
-<!--            <th scope="col"># of Products</th>-->
-            <th scope="col">Products</th>
+            <th scope="col">Product ID</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Preview</th>
+            <th scope="col">Price</th>
+            <th scope="col">Inventory</th>
+            <th scope="col">Details</th>
+
+
         </tr>
         </thead>
         <tbody>
 
-        <tr th:each="shop, iStat : ${shops}">
-            <th scope="row" th:text="${shop.id}"></th>
-            <td th:text="${shop.name}"></td>
-            <td th:text="${shop.categoryList}"></td>
-            <td><a href="" th:href="@{/products/{id}(id=${shop.id})}" class="btn btn-success">View Products</a></td>
+        <tr th:each="product : ${products}">
+            <th scope="row" th:text="${product.id}"></th>
+            <td th:text="${product.name}"></td>
+            <td><img src="" height="100px" width="100px"  th:src="*{'data:image/jpeg;png;base64,' + {product.imageName}}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.inventoryNum}"></td>
+            <td><a href="" th:href="@{/products/{id}/{productId}(id=${shop.id}, productId=${product.id})}" class="btn btn-danger">See more</a></td>
+
         </tr>
         </tbody>
     </table>
-
-<!--    <div class="row col d-flex" th:each="shop, iStat : ${shops}">-->
-<!--        <div class="col-sm-2 pt-3 col d-flex justify-content-center" >-->
-<!--            <div class="card" style="background-color:white;">-->
-<!--                <div class="card-body">-->
-<!--                    <h4 class="card-title" th:text="${shop.name}"></h4>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
 </div>
 
 

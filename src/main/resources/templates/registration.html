@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <h1>Registration</h1>
-                <form th:action="@{/registration}" method="post" th:object="${user}">
+                <form th:action="@{/registration}" method="post" th:object="${userDTO}">
                     <div class="form-group">
                         <label class="control-label" for="username">Username</label>
                         <input id="username" type="text" class="form-control" placeholder="Enter username" th:field="*{username}" required autofocus="autofocus">
@@ -43,6 +43,17 @@
                         <div class="form-group">
                             <label class="control-label" for="lastname">Last Name</label>
                             <input id="lastname" class="form-control"  placeholder="Enter last name" th:field="*{lastname}" required autofocus="autofocus">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="isMerchant">Merchant</label>
+                            <input
+                                    id="isMerchant"
+                                    type="checkbox"
+                                    name="isMerchant"
+                                    th:field="*{merchant}"
+                                    th:value="true"> <p>Only check this box if you would like to be a MERCHANT, otherwise leave it blank</p>
+                            </input>
+
                         </div>
                         <button type="submit" class="btn btn-primary">Register</button>
                         <span>Already a user? <a href="/" th:href="@{/login}">Login</a></span>

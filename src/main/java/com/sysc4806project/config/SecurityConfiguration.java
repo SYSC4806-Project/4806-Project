@@ -28,23 +28,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.
                 authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/index").permitAll()
-                .antMatchers("/shops").permitAll()
-                .antMatchers("/shops/shopsByName").permitAll()
-                .antMatchers("/shops/shopsByCategory").permitAll()
-                .antMatchers("/merchant").authenticated()
-                .antMatchers("/merchant/shops").authenticated()
-                .antMatchers("/merchant/shops/add").authenticated()
-                .antMatchers("/merchant/shops/delete").authenticated()
-                .antMatchers("/dashboard").authenticated()
-                .antMatchers("/registration**",
-                        "/js/**",
-                        "/css/**",
-                        "/images/**").permitAll().anyRequest().authenticated().
+                .antMatchers("/index").permitAll() .antMatchers("/registration**",
+                "/js/**",
+                "/css/**",
+                "/images/**").permitAll()
+                .antMatchers("/shops").authenticated()
+                .antMatchers("/merchant").hasRole("MERCHANT").anyRequest().authenticated().
                 and()
                 .formLogin().
                 loginPage("/login")
-                .defaultSuccessUrl("/merchant", true).
+                .defaultSuccessUrl("/loginRole", true).
                 permitAll()
                 .and()
                 .logout()

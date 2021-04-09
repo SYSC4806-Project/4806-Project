@@ -6,14 +6,13 @@ import com.sysc4806project.repositories.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ShopServiceImpl implements ShopService{
     @Autowired
-    ShopRepository shopRepository;
+    private ShopRepository shopRepository;
 
     @Override
     public void addShop(Shop shop) {
