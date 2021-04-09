@@ -19,7 +19,7 @@ Incomplete features:
 -cart/checkout feature
 
 
-Here is the link for Heroku: ADD IN
+Here is the link for Heroku: https://sysc4806-ecommerce-app.herokuapp.com/
 
 
 The documentation included is the uml class diagram and database schema diagram for Milestone 3
