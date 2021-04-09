@@ -331,7 +331,7 @@ public class MerchantControllerTest {
         System.out.println("Shop "+shop.getId());
         System.out.println("Repo "+shopRepository.findByName("Shop").getId());
 
-        this.mockMvc.perform(get("/merchant/shops/update/{id}",8).param("id", "8")).andDo(print()).andExpect(status().isOk())
+        this.mockMvc.perform(get("/merchant/shops/update/{id}",6).param("id", "6")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Edit")))
                 .andExpect(content().contentType("text/html;charset=UTF-8"));
 
