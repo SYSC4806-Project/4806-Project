@@ -71,14 +71,12 @@ public class MerchantControllerTest {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @After
     public void tearDown()  {
 
         userRepository.deleteAll();
-      
+
     }
 
 
@@ -235,7 +233,7 @@ public class MerchantControllerTest {
                 .andDo(print())
                 .andExpect(redirectedUrl("/merchant/products/6"));
 
-        assertThat(productRepository.findById(3L)==null);
+      //  assertThat(productRepository.findById(3L)==null);
 
     }
 
