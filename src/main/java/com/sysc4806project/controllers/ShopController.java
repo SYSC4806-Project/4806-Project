@@ -39,7 +39,7 @@ public class ShopController {
         return "products";
     }
 
-    @GetMapping("/shop/{id}/{productId}")
+    @GetMapping("/products/{id}/{productId}")
     public String getProductPage(@PathVariable Long id,@PathVariable Long productId, Model model) {
         Product product = productService.getProductById(productId);
         ProductDTO productDTO = new ProductDTO();
@@ -55,10 +55,10 @@ public class ShopController {
         return "product";
     }
 
-    @PostMapping("/shop/{id}/{productId}")
+    @PostMapping("/products/{id}/{productId}")
     public String postProductPage(@PathVariable Long id,@PathVariable Long productId, Model model) {
 
-        return "redirect:/shop/{id}";
+        return "redirect:/products/{id}";
     }
     
     @GetMapping("/shops/shopsByName")

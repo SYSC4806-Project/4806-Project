@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class LoginRoleController {
+
     @RequestMapping("/loginRole")
     public String defaultAfterLogin(HttpServletRequest request) {
         if (request.isUserInRole("ROLE_CUSTOMER")) {
