@@ -105,9 +105,15 @@ public class MerchantControllerTest {
         Shop shop = new Shop("Shop",user, new ArrayList<>());
         shopRepository.save(shop);
 
+        System.out.println("Shop "+shop.getId());
+        System.out.println("Repo "+shopRepository.findByName("Shop").getId());
 
         Product product = new Product("prod",shop,2,"desc","img",10);
         productRepository.save(product);
+
+        System.out.println("Product "+product.getId());
+        System.out.println("Repo "+productRepository.getById(product.getId()).getId());
+
 
         this.mockMvc.perform(get("/merchant/products/{id}",3))
                 .andDo(print()).andExpect(status().isOk())
@@ -146,6 +152,8 @@ public class MerchantControllerTest {
                 .andExpect(redirectedUrl("/merchant/shops"));
 
         Shop shop = shopRepository.findByName("MyShop");
+        System.out.println("Shop "+shop.getId());
+
 
         assertThat(shop.getName()).isEqualTo("MyShop");
         assertThat(shop.getCategoryList()).contains("sports");
@@ -162,6 +170,9 @@ public class MerchantControllerTest {
 
         Shop shop = new Shop("Shop",user, new ArrayList<>());
         shopRepository.save(shop);
+
+        System.out.println("Shop "+shop.getId());
+        System.out.println("Repo "+shopRepository.findByName("Shop").getId());
 
         this.mockMvc.perform(get("/merchant/products/add/{id}",8)).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Add a new Product")))
@@ -182,9 +193,14 @@ public class MerchantControllerTest {
         Shop shop = new Shop("Shop",user, new ArrayList<>());
         shopRepository.save(shop);
 
+        System.out.println("Shop "+shop.getId());
+        System.out.println("Repo "+shopRepository.findByName("Shop").getId());
+
         Product product = new Product("prod",shop,2,"desc","img",10);
         productRepository.save(product);
 
+        System.out.println("Product "+product.getId());
+        System.out.println("Repo "+productRepository.getById(product.getId()).getId());
 
 
         MockMultipartFile file = new MockMultipartFile("file", "original_filename.ext", null, "data".getBytes());
@@ -257,7 +273,7 @@ public class MerchantControllerTest {
         System.out.println("Repo "+shopRepository.findByName("Shop").getId());
 
 
-        this.mockMvc.perform(get("/merchant/shops/delete/{id}",9))
+        this.mockMvc.perform(get("/merchant/shops/delete/{id}",13))
                 .andDo(print())
                 .andExpect(redirectedUrl("/merchant/shops"));
 
