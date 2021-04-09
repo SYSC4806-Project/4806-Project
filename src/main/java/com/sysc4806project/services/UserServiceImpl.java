@@ -27,7 +27,6 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    @GetLogInfo
     public User registerUser(UserRegistrationDto registrationDto) {
         User user;
         System.out.println("ROLESSS" + registrationDto.isMerchant());
