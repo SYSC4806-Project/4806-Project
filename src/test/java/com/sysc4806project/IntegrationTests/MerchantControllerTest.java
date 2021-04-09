@@ -229,9 +229,9 @@ public class MerchantControllerTest {
         System.out.println("Repo "+productRepository.getById(product.getId()).getId());
 
 
-        this.mockMvc.perform(get("/merchant/products/delete/{id}/{productId}",6,3))
+        this.mockMvc.perform(get("/merchant/products/delete/{id}/{productId}",10,7))
                 .andDo(print())
-                .andExpect(redirectedUrl("/merchant/products/6"));
+                .andExpect(redirectedUrl("/merchant/products/10"));
 
       //  assertThat(productRepository.findById(3L)==null);
 
