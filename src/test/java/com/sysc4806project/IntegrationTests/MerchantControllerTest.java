@@ -115,7 +115,7 @@ public class MerchantControllerTest {
         System.out.println("Repo "+productRepository.getById(product.getId()).getId());
 
 
-        this.mockMvc.perform(get("/merchant/products/{id}",3))
+        this.mockMvc.perform(get("/merchant/products/{id}",7))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Products")))
                 .andExpect(content().contentType("text/html;charset=UTF-8"));
@@ -174,7 +174,7 @@ public class MerchantControllerTest {
         System.out.println("Shop "+shop.getId());
         System.out.println("Repo "+shopRepository.findByName("Shop").getId());
 
-        this.mockMvc.perform(get("/merchant/products/add/{id}",8)).andDo(print()).andExpect(status().isOk())
+        this.mockMvc.perform(get("/merchant/products/add/{id}",12)).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Add a new Product")))
 
                 .andExpect(content().contentType("text/html;charset=UTF-8"));
@@ -206,7 +206,7 @@ public class MerchantControllerTest {
         MockMultipartFile file = new MockMultipartFile("file", "original_filename.ext", null, "data".getBytes());
 
 
-        this.mockMvc.perform(multipart("/merchant/products/add/{id}",3).file(file).with(csrf()).secure( true )
+        this.mockMvc.perform(multipart("/merchant/products/add/{id}",9).file(file).with(csrf()).secure( true )
                 .param("id", "1")
                 .param("name", "Ball")
                 .param("productImage","file"))
@@ -307,7 +307,7 @@ public class MerchantControllerTest {
         System.out.println("Repo "+productRepository.getById(product.getId()).getId());
 
 
-        this.mockMvc.perform(get("/merchant/products/update/{id}",4)).andDo(print()).andExpect(status().isOk())
+        this.mockMvc.perform(get("/merchant/products/update/{id}",8)).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Update")))
                 .andExpect(content().contentType("text/html;charset=UTF-8"));
 
@@ -332,7 +332,7 @@ public class MerchantControllerTest {
         System.out.println("Shop "+shop.getId());
         System.out.println("Repo "+shopRepository.findByName("Shop").getId());
 
-        this.mockMvc.perform(get("/merchant/shops/update/{id}",2)).andDo(print()).andExpect(status().isOk())
+        this.mockMvc.perform(get("/merchant/shops/update/{id}",8)).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Edit")))
                 .andExpect(content().contentType("text/html;charset=UTF-8"));
 
