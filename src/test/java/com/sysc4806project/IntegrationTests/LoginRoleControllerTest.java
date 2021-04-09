@@ -14,10 +14,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
-public class LoginRoleControllerTest {
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
+//@AutoConfigureMockMvc
+//public class LoginRoleControllerTest {
 //    @Autowired
 //    private MockMvc mockMvc;
 //
@@ -28,5 +28,5 @@ public class LoginRoleControllerTest {
 //                .andExpect(content().string(containsString("Login")))
 //                .andExpect(content().contentType("text/html;charset=UTF-8"));
 //    }
-
-}
+//
+//}
