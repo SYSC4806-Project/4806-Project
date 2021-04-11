@@ -32,6 +32,7 @@ public class ShopServiceImpl implements ShopService{
 
     @Override
     @GetExecutionTime
+    @GetLogInfo
     public List<Shop> getAllShops() {
         return shopRepository.findAll();
     }
