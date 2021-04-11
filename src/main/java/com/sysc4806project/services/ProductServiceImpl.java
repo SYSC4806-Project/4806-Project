@@ -1,5 +1,6 @@
 package com.sysc4806project.services;
 
+import com.sysc4806project.aop.GetLogInfo;
 import com.sysc4806project.dto.ProductDTO;
 import com.sysc4806project.models.Product;
 import com.sysc4806project.models.Shop;
@@ -22,16 +23,19 @@ public class ProductServiceImpl implements ProductService{
     private ShopService shopService;
 
     @Override
+    @GetLogInfo
     public List<Product> getAllProductsWithinShop(Long shopId) {
         return productRepository.findByParentShopId(shopId);
     }
 
     @Override
+    @GetLogInfo
     public Product getProductById(Long id) {
         return productRepository.getById(id);
     }
 
     @Override
+    @GetLogInfo
     public void addProduct(Product product, MultipartFile file) {
 
         if (!file.isEmpty()) {
